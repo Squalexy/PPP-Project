@@ -27,7 +27,7 @@ void inserir_orcamento(node_orcamento *lista_orcamentos, char *tipo, int valor) 
     strcpy(novo->orc.tipo, tipo); //Determina o nome do orçamento nessa node_orcamento
     novo->orc.valor = valor; //Determina o valor do orçamento nessa node_orcamento
     node_orcamento *aux = lista_orcamentos;
-    while (aux->next != NULL && strcmp(aux->orc.tipo, tipo) > 0) { //Enquanto o último node_orcamento apontar para vazio
+    while (aux->next != NULL && strcasecmp(aux->orc.tipo, tipo) > 0) { //Enquanto o último node_orcamento apontar para vazio
         aux = aux->next; //O último node_orcamento apontará para um próximo node_orcamento
     }
     novo->next = aux->next;
