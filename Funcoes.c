@@ -1,11 +1,11 @@
 #include "Declaracoes.h"
 // --------------------------- LISTAS --------------------------- //
 
-node_orcamento *create_list() {
+node_orcamento *create_list_orcamento() {
     return calloc(sizeof(node_orcamento), 1); //Cria uma lista
 }
 
-node_despesa *create_list_dois() {
+node_despesa *create_list_despesa() {
     return calloc(sizeof(node_despesa), 1);
 }
 
@@ -27,12 +27,14 @@ void inserir_orcamento(node_orcamento *lista_orcamentos, char *tipo, int valor) 
     strcpy(novo->orc.tipo, tipo); //Determina o nome do orçamento nessa node_orcamento
     novo->orc.valor = valor; //Determina o valor do orçamento nessa node_orcamento
     node_orcamento *aux = lista_orcamentos;
-    while (aux->next != NULL) { //Enquanto o último node_orcamento apontar para vazio
+    while (aux->next != NULL && strcmp(aux->orc.tipo, tipo) > 0) { //Enquanto o último node_orcamento apontar para vazio
         aux = aux->next; //O último node_orcamento apontará para um próximo node_orcamento
     }
-    aux->next = novo; //Cria um novo node_orcamento
-    novo->next = NULL;
+    novo->next = aux->next;
+    aux->next = novo;
 }
+
+
 
 void print_orcamento(node_orcamento *lista) {
     if (lista->orc.valor == 0) lista = lista->next; //voltar aqui depois porque isto é estranho as fuck
@@ -44,7 +46,7 @@ void print_orcamento(node_orcamento *lista) {
 
 void atualizar_lista(node_orcamento *lista_orcamentos, char *tipo, int valor) {
     while (lista_orcamentos != NULL) {
-        if (strcmp(lista_orcamentos->orc.tipo, tipo) == 0) {
+        if (strcasecmp(lista_orcamentos->orc.tipo, tipo) == 0) {
             lista_orcamentos->orc.valor = valor;
             break;
         }
@@ -103,7 +105,7 @@ void print_despesa(node_despesa *despesa) {
 
 void atualizar_lista_dois(node_despesa *lista_despesas, char *descricao, int preco) {
     while (lista_despesas != NULL) {
-        if (strcmp(lista_despesas->orc.descricao, descricao) == 0) {
+        if (strcasecmp(lista_despesas->orc.descricao, descricao) == 0) {
             lista_despesas->orc.preco = preco;
             break;
         }
@@ -132,7 +134,7 @@ void ler_orcamento(node_orcamento *lista) {
         exit(1);
     }
     node_orcamento *aux = calloc(sizeof(node_orcamento), 1);
-    limpar(lista);
+    limpar_orcamentos(lista);
     while (fread(aux, sizeof(node_orcamento), 1, fptr)) {
         printf("Tipo: %s - Valor: %d\n", aux->orc.tipo, aux->orc.valor);
         inserir_orcamento(lista, aux->orc.tipo, aux->orc.valor);
@@ -168,7 +170,7 @@ void ler_despesas(node_despesa *despesa) {
         exit(1);
     }
     node_despesa *aux = calloc(sizeof(node_despesa), 1);
-    limpar_dois(despesa);
+    limpar_despesas(despesa);
     while (fread(aux, sizeof(node_despesa), 1, fptr)) {
         printf("DESCRIÇÃO: %s - VALOR: %d - TIPO: %s\n", aux->orc.descricao, aux->orc.preco, aux->orc.tipo);
         inserir_despesa(despesa, aux->orc.descricao, aux->orc.preco, aux->orc.tipo);
@@ -193,23 +195,27 @@ void escrever_despesas(node_despesa *novo) {
     fclose(fptr);
 }
 
-//Funções para limpar a lista e não duplicá-la cada vez que ler o ficheiro de orçamento
+//Funções para limpar_orcamentos a lista e não duplicá-la cada vez que ler o ficheiro de orçamento
 //Pode acontecer eu ler um ficheiro, adicionar um elemento à lista, acrescentá-lo ao ficheiro e ler novamente o ficheiro
 //Como não limpei a lista, ele iria ler o ficheiro antigo (sem o elemento adicionado) e o ficheiro novo, ou seja, iria duplicar os elementos
 //já existentes
-void limpar(node_orcamento *lista) {
+void limpar_orcamentos(node_orcamento *lista) {
+    node_orcamento *copia = lista;
+    lista = lista->next;
+    copia->next = NULL;
     while (lista != NULL) {
         node_orcamento *next = lista->next;
-        node_orcamento *copia = lista;
-        free(copia);
+        free(lista);
         lista = next;
     }
 }
-void limpar_dois(node_despesa* despesa) {
+void limpar_despesas(node_despesa* despesa) {
+    node_despesa *copia = despesa;
+    despesa = despesa->next;
+    copia->next = NULL;
     while (despesa != NULL) {
         node_despesa *next = despesa->next;
-        node_despesa *copia = despesa;
-        free(copia);
+        free(despesa);
         despesa = next;
     }
 }

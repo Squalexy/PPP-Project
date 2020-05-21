@@ -5,8 +5,8 @@
 
 int main() {
     int input = 0;
-    node_orcamento* lista_orcamentos = create_list(); //Cria desde já uma primeira lista, antes do programa começar a funcionar
-    node_despesa* lista_despesas = create_list_dois();
+    node_orcamento* lista_orcamentos = create_list_orcamento(); //Cria desde já uma primeira lista, antes do programa começar a funcionar
+    node_despesa* lista_despesas = create_list_despesa();
     while(input != 11){
         printf("\nEscolha uma opção: \n");
         printf("1 - Ler ficheiro de orçamento\n");
@@ -54,6 +54,10 @@ int main() {
                 escrever_despesas(lista_despesas);
                 break;
             case 11:
+                limpar_despesas(lista_despesas);
+                limpar_orcamentos(lista_orcamentos);
+                free(lista_despesas);
+                free(lista_orcamentos);
                 return 0;
             default:
                 printf("Opção inválida. Repita a escolha. \n");

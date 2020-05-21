@@ -20,12 +20,12 @@ typedef struct _despesas{
     char tipo[MAXTAMANHO];
 }despesas;
 
-typedef struct node {
+typedef struct node_orcamento {
     orcamentado orc;
     struct node_orcamento *next;
 }node_orcamento;
 
-typedef struct node_dois {
+typedef struct node_despesa {
     despesas orc;
     struct node_despesa *next;
 }node_despesa;
@@ -35,8 +35,8 @@ typedef struct node_dois {
 // --------------------- DECLARAR AS FUNÇÕES --------------------- //
 
 //0. NODES
-node_orcamento* create_list();
-node_despesa* create_list_dois();
+node_orcamento* create_list_orcamento();
+node_despesa* create_list_despesa();
 
 //1. ORÇAMENTO
 void input_orcamento(node_orcamento* lista_orcamentos);
@@ -59,8 +59,8 @@ void ler_despesas(node_despesa *despesa);
 void escrever_despesas(node_despesa *novo);
 
 //4. LIMPEZA
-void limpar(node_orcamento *lista);
-void limpar_dois(node_despesa* despesa);
+void limpar_orcamentos(node_orcamento *lista);
+void limpar_despesas(node_despesa* despesa);
 
 // -------------------------------------------------------------- //
 
