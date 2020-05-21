@@ -1,0 +1,113 @@
+ALIMENTAÇÃO / 200
+Leite - 5 - ALIMENTAÇÃO
+Ovos - 4 - ALIMENTAÇÃO
+Queijo - 4 - ALIMENTAÇÃO
+Água - 2  ALIMENTAÇÃO
+Tomates - 2 - ALIMENTAÇÃO
+Maçãs - 3 - ALIMENTAÇÃO
+Batatas - 3 - ALIMENTAÇÃO
+Vinho - 8 - ALIMENTAÇÃO
+Pão - 10 - ALIMENTAÇÃO
+Manteiga - 3 - ALIMENTAÇÃO
+Manteiga de amendoim - 5 - ALIMENTAÇÃO
+Frango - 10 - ALIMENTAÇÃO
+Atum - 5 - ALIMENTAÇÃO
+Salmão - 15 - ALIMENTAÇÃO
+Ananás - 5 - ALIMENTAÇÃO
+Kiwi - 5 - ALIMENTAÇÃO
+Manga - 5 - ALIMENTAÇÃO
+Laranjas - 3 - ALIMENTAÇÃO
+Massa - 3 - ALIMENTAÇÃO
+Arroz - 3 - ALIMENTAÇÃO
+Alface - 3 - ALIMENTAÇÃO
+Couve - 2 - ALIMENTAÇÃO
+Espinafres - 5 - ALIMENTAÇÃO
+Brócolos - 5 - ALIMENTAÇÃO
+Batatas fritas - 3 - ALIMENTAÇÃO
+Camarão - 5 - ALIMENTAÇÃO
+Molho de soja - 3 - ALIMENTAÇÃO
+Queijo fresco - 5 - ALIMENTAÇÃO
+Fiambre - 3 - ALIMENTAÇÃO
+Chouriço - 4 - ALIMENTAÇÃO
+Bacon - 4 - ALIMENTAÇÃO
+
+HABITAÇÃO / 350
+Renda - 300 - HABITAÇÃO 
+Despesas - 50 - HABITAÇÃO 
+Produtos de limpeza - 10 - HABITAÇÃO 
+Acertos - 20 - HABITAÇÃO 
+
+UNIVERSIDADE / 150
+Propinas - 90 - UNIVERSIDADE 
+Café - 10 - UNIVERSIDADE 
+Lanche - 10 - UNIVERSIDADE 
+
+MATERIAL ESCOLAR / 50
+Livro - 10 - MATERIAL ESCOLAR
+Fotocópias - 10 - MATERIAL ESCOLAR
+Cadernos - 10 - MATERIAL ESCOLAR
+Canetas - 5 - MATERIAL ESCOLAR
+Lápis - 2 - MATERIAL ESCOLAR
+Borracha - 2 - MATERIAL ESCOLAR
+Régua - 2 - MATERIAL ESCOLAR
+Capas - 5 - MATERIAL ESCOLAR
+Marcadores - 3 - MATERIAL ESCOLAR
+Mochila - 10 - MATERIAL ESCOLAR
+
+TRANSPORTES / 50
+Passe - 15€ - TRANSPORTES 
+Autocarro ou Comboio - 20 - TRANSPORTES 
+Uber - 10 - TRANSPORTES 
+Uber Eats - 5 - TRANSPORTES
+
+CUIDADOS PESSOAIS / 50
+Ginásio - 20
+Produtos de limpeza de pele - 10 - CUIDADOS PESSOAIS
+Shampô - 5 - CUIDADOS PESSOAIS
+Gel de banho - 5 - CUIDADOS PESSOAIS
+Pasta de dentes - 5 - CUIDADOS PESSOAIS
+Fio dental - 2 - CUIDADOS PESSOAIS
+Elixir oral - 3 - CUIDADOS PESSOAIS
+Perfume - 20 - CUIDADOS PESSOAIS
+Amaciador - 5 - CUIDADOS PESSOAIS
+Máscara para cabelo - 5 - CUIDADOS PESSOAIS
+Pente de cabelo - 5 - CUIDADOS PESSOAIS
+
+LAZER / 70
+Cinema - 10 - LAZER 
+Videojogos - 60 - LAZER 
+Saídas à noite - 20 - LAZER 
+Concerto de jazz - 5 - LAZER 
+Jogo de ténis - 5 - LAZER 
+Restaurante - 10 - LAZER
+Jantar de caloiros - 10 - LAZER
+
+SUBSCRIÇÕES / 50
+Spotify - 8 - SUBSCRIÇÕES
+Telemóvel - 10 - SUBSCRIÇÕES
+Netflix - 12 - SUBSCRIÇÕES
+Amazon - 10 - SUBSCRIÇÕES
+HBO - 5 - SUBSCRIÇÕES
+
+ANIMAIS / 50
+Comida - 30 - ANIMAIS 
+Veterinário - 20 - ANIMAIS 
+Brinquedo para cão - 5 - ANIMAIS 
+Brinquedo para gato - 5 - ANIMAIS 
+
+ALCOOL / 30
+Vodka - 8 - ALCOOL 
+Cerveja - 5 - ALCOOL 
+Whisky - 10 - ALCOOL 
+Moscatel - 5 - ALCOOL 
+Vinho rosé - 5 - ALCOOL 
+Vinho branco - 5 - ALCOOL 
+Vinho tinto - 5 - ALCOOL 
+Licor beirão - 10 - ALCOOL 
+
+OUTROS / 50
+Festival NOS ALIVE - 100 - OUTROS 
+Medicamentos - 20 - OUTROS
+Hospital - 20 - OUTROS
+Cabeleireiro - 10 - OUTROS
+Dentista - 20 - OUTROS

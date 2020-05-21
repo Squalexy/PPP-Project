@@ -1,0 +1,20 @@
+O comportamento do programa nas situações não previstas no enunciado deve ser escolhido por cada estudante, de entre as várias hipóteses razoáveis. As escolhas feitas devem ser referidas explicitamente: não é aceitável ter de ir ver qual o comportamento do programa nesses casos para saber qual a escolha feita. No cabeçalho do programa principal devem estar listadas as escolhas feitas.
+
+As situações de erro devem ser intercetadas e recuperadas ou, pelo menos, assinaladas, se a recuperação não for viável ou for complexa.
+
+Os dados de entrada devem ser lidos de um ficheiro binário. Deve ser desenvolvido um programa autónomo para gerar e alterar o ficheiro binário por interação com o utilizador.
+Os dados de entrada devem fazer sentido, conter pelo menos 100 entidades, e os ficheiros que os contenham devem ser incluídos na submissão final do trabalho.
+
+O interface com a estrutura de dados usada deve estar bem definido.
+
+A implementação da estrutura de dados deve ser feita num ficheiro fonte autónomo, sendo os dados que a suportam declarados como variáveis static nesse ficheiro, para não poderem ser usadas no programa principal.
+
+O nome do ficheiro de entrada deve ser pedido ao utilizador.
+
+O programa deve analisar as despesas mensais de uma pessoa. Há dois grupos de dados de entrada: um orçamento por tipos de despesa (alimentação, transportes, vestuário, etc) e uma lista de despesas (descrição - valor - tipo de despesa). O programa deve gerar duas listagens: O valor total da despesa em cada tipo, e uma lista dos orçamentos em que o desvio em relação ao orçamentado foi superior a 10%, incluindo o desvio global da despesa, em relação ao orçamentado, no mês em causa.
+
+O programa deve usar (uma ou mais) listas ligadas simples baseadas em gestão dinâmica de memória.
+
+O nome do ficheiro de saída deve ser lido de um ficheiro de texto chamado "config.txt".
+
+Os dados de saída devem ser escritos num ficheiro de texto, com uma entidade por linha, e os diversos atributos da entidade separados pelo carater '\t'.
