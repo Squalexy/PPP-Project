@@ -1,4 +1,4 @@
-# Install script for directory: /cygdrive/d/Francisco/Documents/Uni/FimLicenciatura/Projeto_PPP
+# Install script for directory: /cygdrive/c/Users/squal/CLionProjects/PROJETO
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/cygdrive/d/Francisco/Documents/Uni/FimLicenciatura/Projeto_PPP/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

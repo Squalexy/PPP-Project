@@ -4,6 +4,7 @@
 
 
 int main() {
+    char introduzir[MAXTAMANHO];
     int input = 0;
     node_orcamento* lista_orcamentos = create_list_orcamento(); //Cria desde já uma primeira lista, antes do programa começar a funcionar
     node_despesa* lista_despesas = create_list_despesa();
@@ -20,7 +21,8 @@ int main() {
         printf("9 - Guardar orçamento\n");
         printf("10 - Guardar despesas\n");
         printf("11 - Sair\n");
-        scanf("%d", &input);
+        fgets(introduzir, MAXTAMANHO, stdin);
+        input = (int)strtol(introduzir, NULL,0);
 
         switch(input){
             case 1:

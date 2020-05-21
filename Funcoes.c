@@ -14,12 +14,16 @@ node_despesa *create_list_despesa() {
 
 void input_orcamento(node_orcamento *lista_orcamentos) {
     char tipo[MAXTAMANHO];
-    int valor;
-    printf("Nome do tipo: \n"); //guardar numa variavél, ver se já aparece na lista; se existir, não acrescenta mas atualiza o valor do orçamento
-    scanf("%s", tipo); //caso não exista, adiciona o tipo e o valor à lista
+    char valor[MAXTAMANHO];
+    int preco;
+    printf("Nome do tipo: \n");
+    fgets(tipo, MAXTAMANHO, stdin);
+    tipo[strlen(tipo)-1] = '\0'; //para não meter um \n
     printf("Valor do tipo: \n");
-    scanf("%d", &valor);
-    inserir_orcamento(lista_orcamentos, tipo, valor);
+    fgets(valor, MAXTAMANHO, stdin);
+    valor[strlen(valor)-1] = '\0';
+    preco = (int)strtol(valor,NULL,0);
+    inserir_orcamento(lista_orcamentos, tipo, preco);
 }
 
 void inserir_orcamento(node_orcamento *lista_orcamentos, char *tipo, int valor) {
@@ -56,12 +60,16 @@ void atualizar_lista(node_orcamento *lista_orcamentos, char *tipo, int valor) {
 
 void atualizar_orcamento(node_orcamento *lista_orcamentos) {
     char tipo[MAXTAMANHO];
-    int valor;
+    char valor[MAXTAMANHO];
+    int preco;
     printf("Nome do tipo que quer atualizar: \n"); //guardar numa variavél, ver se já aparece na lista; se existir, não acrescenta mas atualiza o valor do orçamento
-    scanf("%s", tipo); //caso não exista, adiciona o tipo e o valor à lista
+    fgets(tipo, MAXTAMANHO, stdin); //caso não exista, adiciona o tipo e o valor à lista
+    tipo[strlen(tipo)-1] = '\0';
     printf("Valor do tipo que quer atualizar: \n");
-    scanf("%d", &valor);
-    atualizar_lista(lista_orcamentos, tipo, valor);
+    fgets(valor, MAXTAMANHO, stdin);
+    valor[strlen(valor)-1] = '\0';
+    preco = (int)strtol(valor,NULL,0);
+    atualizar_lista(lista_orcamentos, tipo, preco);
 }
 
 
@@ -70,13 +78,18 @@ void atualizar_orcamento(node_orcamento *lista_orcamentos) {
 void input_despesas(node_despesa *lista_despesas) {
     char descricao[MAXTAMANHO];
     char tipo[MAXTAMANHO];
+    char valor[MAXTAMANHO];
     int preco;
     printf("Descrição da despesa: \n");
-    scanf("%s", descricao);
+    fgets(descricao, MAXTAMANHO, stdin);
+    descricao[strlen(descricao)-1] = '\0';
     printf("Valor da despesa: \n");
-    scanf("%d", &preco);
+    fgets(valor, MAXTAMANHO, stdin);
+    valor[strlen(valor)-1] = '\0';
+    preco = (int)strtol(valor,NULL,0);
     printf("Tipo de despesa: \n");
-    scanf("%s", tipo);
+    fgets(tipo, MAXTAMANHO, stdin);
+    tipo[strlen(tipo)-1] = '\0';
     inserir_despesa(lista_despesas, descricao, preco, tipo);
 }
 
@@ -115,11 +128,15 @@ void atualizar_lista_dois(node_despesa *lista_despesas, char *descricao, int pre
 
 void atualizar_despesas(node_despesa *lista_despesas) {
     char descricao[MAXTAMANHO];
+    char valor[MAXTAMANHO];
     int preco;
     printf("Nome da descrição que quer atualizar: \n"); //guardar numa variavél, ver se já aparece na lista; se existir, não acrescenta mas atualiza o valor do orçamento
-    scanf("%s", descricao); //caso não exista, adiciona o tipo e o valor à lista
+    fgets(descricao, MAXTAMANHO, stdin); //caso não exista, adiciona o tipo e o valor à lista
+    descricao[strlen(descricao)-1] = '\0';
     printf("Valor da descricao que quer atualizar: \n");
-    scanf("%d", &preco);
+    fgets(valor, MAXTAMANHO, stdin);
+    valor[strlen(valor)-1] = '\0';
+    preco = (int)strtol(valor,NULL,0);
     atualizar_lista_dois(lista_despesas, descricao, preco);
 }
 
