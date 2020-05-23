@@ -27,12 +27,12 @@ void input_orcamento(node_orcamento *lista_orcamentos) {
 }
 
 void inserir_orcamento(node_orcamento *lista_orcamentos, char *tipo, int valor) {
-    node_orcamento *novo = calloc(sizeof(node_orcamento), 1); //Cria um novo node_orcamento; novo = nova lista do orçamento
-    strcpy(novo->orc.tipo, tipo); //Determina o nome do orçamento nessa node_orcamento
-    novo->orc.valor = valor; //Determina o valor do orçamento nessa node_orcamento
+    node_orcamento *novo = calloc(sizeof(node_orcamento), 1);
+    strcpy(novo->orc.tipo, tipo);
+    novo->orc.valor = valor;
     node_orcamento *aux = lista_orcamentos;
-    while (aux->next != NULL && strcasecmp(aux->orc.tipo, tipo) > 0) { //Enquanto o último node_orcamento apontar para vazio
-        aux = aux->next; //O último node_orcamento apontará para um próximo node_orcamento
+    while (aux->next != NULL && strcasecmp(aux->next->orc.tipo, tipo)<0) { //Ordem alfabética
+        aux = aux->next;
     }
     novo->next = aux->next;
     aux->next = novo;
@@ -41,7 +41,7 @@ void inserir_orcamento(node_orcamento *lista_orcamentos, char *tipo, int valor) 
 
 
 void print_orcamento(node_orcamento *lista) {
-    if (lista->orc.valor == 0) lista = lista->next; //voltar aqui depois porque isto é estranho as fuck
+    if (lista->orc.valor == 0) lista = lista->next; //calloc cria um 0 na lista
     while (lista != NULL) {
         printf("TIPO: %s - ORÇAMENTO: %d \n", lista->orc.tipo, lista->orc.valor);
         lista = lista->next;
@@ -62,8 +62,8 @@ void atualizar_orcamento(node_orcamento *lista_orcamentos) {
     char tipo[MAXTAMANHO];
     char valor[MAXTAMANHO];
     int preco;
-    printf("Nome do tipo que quer atualizar: \n"); //guardar numa variavél, ver se já aparece na lista; se existir, não acrescenta mas atualiza o valor do orçamento
-    fgets(tipo, MAXTAMANHO, stdin); //caso não exista, adiciona o tipo e o valor à lista
+    printf("Nome do tipo que quer atualizar: \n");
+    fgets(tipo, MAXTAMANHO, stdin);
     tipo[strlen(tipo)-1] = '\0';
     printf("Valor do tipo que quer atualizar: \n");
     fgets(valor, MAXTAMANHO, stdin);
@@ -94,21 +94,21 @@ void input_despesas(node_despesa *lista_despesas) {
 }
 
 void inserir_despesa(node_despesa *lista_despesas, char *descricao, int preco, char *tipo) {
-    node_despesa *novo = calloc(sizeof(node_despesa), 1); //Cria um novo node_orcamento; novo = nova lista do orçamento
-    strcpy(novo->orc.descricao, descricao); //Determina o nome do orçamento nessa node_orcamento
-    novo->orc.preco = preco; //Determina o valor do orçamento nessa node_orcamento
+    node_despesa *novo = calloc(sizeof(node_despesa), 1);
+    strcpy(novo->orc.descricao, descricao);
+    novo->orc.preco = preco;
     strcpy(novo->orc.tipo, tipo);
     novo->next = NULL;
     node_despesa *aux = lista_despesas;
-    while (aux->next != NULL) { //Enquanto o último node_orcamento apontar para vazio
-        aux = aux->next; //O último node_orcamento apontará para um próximo node_orcamento
+    while (aux->next != NULL && strcasecmp(aux->next->orc.tipo, tipo)<0) {
+        aux = aux->next;
     }
-    aux->next = novo; //Cria um novo node_orcamento
-    novo->next = NULL;
+    novo -> next = aux -> next;
+    aux -> next = novo;
 }
 
 void print_despesa(node_despesa *despesa) {
-    if (despesa->orc.preco == 0) despesa = despesa->next; //voltar aqui depois porque isto é estranho as fuck
+    if (despesa->orc.preco == 0) despesa = despesa->next;
     while (despesa != NULL) {
         printf("DESCRIÇÃO: %s - ORÇAMENTO: %d  - TIPO: %s\n", despesa->orc.descricao, despesa->orc.preco,
                despesa->orc.tipo);
@@ -130,8 +130,8 @@ void atualizar_despesas(node_despesa *lista_despesas) {
     char descricao[MAXTAMANHO];
     char valor[MAXTAMANHO];
     int preco;
-    printf("Nome da descrição que quer atualizar: \n"); //guardar numa variavél, ver se já aparece na lista; se existir, não acrescenta mas atualiza o valor do orçamento
-    fgets(descricao, MAXTAMANHO, stdin); //caso não exista, adiciona o tipo e o valor à lista
+    printf("Nome da descrição que quer atualizar: \n");
+    fgets(descricao, MAXTAMANHO, stdin);
     descricao[strlen(descricao)-1] = '\0';
     printf("Valor da descricao que quer atualizar: \n");
     fgets(valor, MAXTAMANHO, stdin);
@@ -153,7 +153,6 @@ void ler_orcamento(node_orcamento *lista) {
     node_orcamento *aux = calloc(sizeof(node_orcamento), 1);
     limpar_orcamentos(lista);
     while (fread(aux, sizeof(node_orcamento), 1, fptr)) {
-        printf("Tipo: %s - Valor: %d\n", aux->orc.tipo, aux->orc.valor);
         inserir_orcamento(lista, aux->orc.tipo, aux->orc.valor);
     }
     free(aux);
@@ -171,7 +170,7 @@ void escrever_orcamento(node_orcamento *novo) {
         exit(1);
     } else {
         while (novo != NULL) {
-            if (novo->orc.valor == 0) novo = novo->next; //Por causa do calloc, aparece um 0 no início
+            if (novo->orc.valor == 0) novo = novo->next;
             fwrite(novo, sizeof(node_orcamento), 1, fptr);
             novo = novo->next;
         }
@@ -189,7 +188,6 @@ void ler_despesas(node_despesa *despesa) {
     node_despesa *aux = calloc(sizeof(node_despesa), 1);
     limpar_despesas(despesa);
     while (fread(aux, sizeof(node_despesa), 1, fptr)) {
-        printf("DESCRIÇÃO: %s - VALOR: %d - TIPO: %s\n", aux->orc.descricao, aux->orc.preco, aux->orc.tipo);
         inserir_despesa(despesa, aux->orc.descricao, aux->orc.preco, aux->orc.tipo);
     }
     free(aux);
@@ -204,7 +202,7 @@ void escrever_despesas(node_despesa *novo) {
         exit(1);
     } else {
         while (novo != NULL) {
-            if (novo->orc.preco == 0) novo = novo->next; //Por causa do calloc, aparece um 0 no início
+            if (novo->orc.preco == 0) novo = novo->next;
             fwrite(novo, sizeof(node_despesa), 1, fptr);
             novo = novo->next;
         }

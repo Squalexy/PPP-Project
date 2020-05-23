@@ -2,7 +2,6 @@
 
 #define MAXTAMANHO 50
 
-
 int main() {
     char introduzir[MAXTAMANHO];
     int input = 0;
@@ -65,37 +64,8 @@ int main() {
                 printf("Opção inválida. Repita a escolha. \n");
         }
     }
-    return 0;
 }
 
-//Função para introduzir um orçamento
-
-
-/*
-
-//Função para introduzir despesas
-input_despesas(){
-}
-
-//Função para escrever no ficheiro binário o orçamento e as despesas
-write_to_binary_file()
-
-//Função para ler ficheiro binário
-read_from_binary_file(){
-}*/
-
-//Função para imprimir lista de orçamento
-
-
-/*
-//Função para imprimir lista de despesas
-lista_desp(){
-}*/
-
-
-// --------------------- FUNÇÕES --------------------- //
-
-//1. Inserir um orçamento
 
 
 
