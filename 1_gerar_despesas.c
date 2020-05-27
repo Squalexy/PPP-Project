@@ -22,7 +22,7 @@ int main() {
         printf("11 - Sair\n");
 
         fgets(introduzir, MAXTAMANHO, stdin);
-        input = (int)strtol(introduzir, NULL,0);
+        input = (int)strtol(introduzir, NULL,10);
 
         switch(input){
             case 1:

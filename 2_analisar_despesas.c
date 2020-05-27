@@ -11,9 +11,10 @@ int main() {
         printf("Escolha o ficheiro que pretende abrir:\n");
         printf("1 - Orçamento\n");
         printf("2 - Despesas\n");
+        printf("3 - Sair\n");
 
         fgets(introduzir, MAXTAMANHO, stdin);
-        input = (int) strtol(introduzir, NULL, 0);
+        input = (int) strtol(introduzir, NULL, 10);
 
         switch (input) {
             case 1:
@@ -22,13 +23,14 @@ int main() {
                 break;
             case 2:
                 ler_despesas(lista_despesas);
-                printf("Valor total das despesas: %d\n", despesas_totais(lista_despesas));
+                //print_despesa(lista_despesas);
+                despesas_totais(lista_despesas);
                 break;
             case 3:
-                limpar_despesas(lista_despesas);
-                limpar_orcamentos(lista_orcamentos);
-                free(lista_despesas);
-                free(lista_orcamentos);
+                //limpar_despesas(lista_despesas);
+                //limpar_orcamentos(lista_orcamentos);
+                //free(lista_despesas);
+                //free(lista_orcamentos);
                 return 0;
             default:
                 printf("Opção inválida. Repita a escolha. \n");

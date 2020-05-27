@@ -1,4 +1,5 @@
 #include "Declaracoes.h"
+
 // --------------------------- LISTAS --------------------------- //
 
 node_orcamento *create_list_orcamento() {
@@ -116,14 +117,21 @@ void print_despesa(node_despesa *despesa) {
     }
 }
 
-int despesas_totais(node_despesa *despesa){
+void despesas_totais(node_despesa *despesa){
     int contagem=0;
     if (despesa->orc.preco == 0) despesa = despesa->next;
-    while (despesa !=NULL){
-        contagem += despesa->orc.preco;
-        despesa = despesa -> next;
+    while (despesa != NULL){
+        if (strcasecmp(despesa->orc.tipo, despesa->next->orc.tipo)==0){ //se o próximo elemento for o mesmo tipo
+            contagem += despesa->orc.preco;
+            despesa = despesa -> next;
+        }
+        else if (strcasecmp(despesa->orc.tipo, despesa->next->orc.tipo)!=0){ //se o próximo elemento for um tipo diferente
+            contagem += despesa->orc.preco;
+            printf("Despesas totais do tipo %s : %d\n", despesa->orc.tipo, contagem);
+            contagem = 0;
+            despesa = despesa -> next;
+        }
     }
-    return contagem;
 }
 
 void atualizar_lista_dois(node_despesa *lista_despesas, char *descricao, int preco) {

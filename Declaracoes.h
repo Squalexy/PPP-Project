@@ -49,7 +49,7 @@ void atualizar_orcamento(node_orcamento* lista_orcamentos);
 void input_despesas(node_despesa* lista_despesas);
 void inserir_despesa(node_despesa* lista_despesas, char* descricao, int preco, char* tipo);
 void print_despesa(node_despesa* despesa);
-int despesas_totais(node_despesa *despesa);
+void despesas_totais(node_despesa *despesa);
 void atualizar_lista_dois(node_despesa* lista_despesas, char* descricao, int preco);
 void atualizar_despesas(node_despesa* lista_despesas);
 
