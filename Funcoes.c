@@ -116,6 +116,16 @@ void print_despesa(node_despesa *despesa) {
     }
 }
 
+int despesas_totais(node_despesa *despesa){
+    int contagem=0;
+    if (despesa->orc.preco == 0) despesa = despesa->next;
+    while (despesa !=NULL){
+        contagem += despesa->orc.preco;
+        despesa = despesa -> next;
+    }
+    return contagem;
+}
+
 void atualizar_lista_dois(node_despesa *lista_despesas, char *descricao, int preco) {
     while (lista_despesas != NULL) {
         if (strcasecmp(lista_despesas->orc.descricao, descricao) == 0) {
