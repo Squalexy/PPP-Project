@@ -6,6 +6,7 @@ int main() {
     int input = 0;
     node_orcamento *lista_orcamentos = create_list_orcamento(); //Cria desde já uma primeira lista, antes do programa começar a funcionar
     node_despesa *lista_despesas = create_list_despesa();
+    node_despesa_total *lista_despesas_totais = create_list_despesa_total();
 
     while (input != 3) {
         printf("Escolha o ficheiro que pretende abrir:\n");
@@ -22,9 +23,10 @@ int main() {
                 print_orcamento(lista_orcamentos);
                 break;
             case 2:
-                ler_despesas(lista_despesas);
+                //ler_despesas(lista_despesas);
                 //print_despesa(lista_despesas);
-                despesas_totais(lista_despesas);
+                despesas_totais(lista_despesas, lista_despesas_totais);
+                desvio_despesas(lista_despesas_totais, lista_orcamentos);
                 break;
             case 3:
                 //limpar_despesas(lista_despesas);

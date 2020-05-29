@@ -10,6 +10,10 @@ node_despesa *create_list_despesa() {
     return calloc(sizeof(node_despesa), 1);
 }
 
+node_despesa_total *create_list_despesa_total(){
+    return calloc(sizeof(node_despesa_total),1);
+}
+
 // ---------- FUNCOES --------- //
 //1. ORÇAMENTO
 
@@ -38,8 +42,6 @@ void inserir_orcamento(node_orcamento *lista_orcamentos, char *tipo, int valor) 
     novo->next = aux->next;
     aux->next = novo;
 }
-
-
 
 void print_orcamento(node_orcamento *lista) {
     if (lista->orc.valor == 0) lista = lista->next; //calloc cria um 0 na lista
@@ -114,23 +116,6 @@ void print_despesa(node_despesa *despesa) {
         printf("DESCRIÇÃO: %s - ORÇAMENTO: %d  - TIPO: %s\n", despesa->orc.descricao, despesa->orc.preco,
                despesa->orc.tipo);
         despesa = despesa->next;
-    }
-}
-
-void despesas_totais(node_despesa *despesa){
-    int contagem=0;
-    if (despesa->orc.preco == 0) despesa = despesa->next;
-    while (despesa != NULL){
-        if (strcasecmp(despesa->orc.tipo, despesa->next->orc.tipo)==0){ //se o próximo elemento for o mesmo tipo
-            contagem += despesa->orc.preco;
-            despesa = despesa -> next;
-        }
-        else if (strcasecmp(despesa->orc.tipo, despesa->next->orc.tipo)!=0){ //se o próximo elemento for um tipo diferente
-            contagem += despesa->orc.preco;
-            printf("Despesas totais do tipo %s : %d\n", despesa->orc.tipo, contagem);
-            contagem = 0;
-            despesa = despesa -> next;
-        }
     }
 }
 
@@ -250,5 +235,46 @@ void limpar_despesas(node_despesa* despesa) {
         node_despesa *next = despesa->next;
         free(despesa);
         despesa = next;
+    }
+}
+
+void despesas_totais(node_despesa *despesa, node_despesa_total* lista_despesas_totais){
+    int contagem = 0;
+    if (despesa->orc.preco == 0) despesa = despesa->next;
+    while (despesa != NULL){
+        if (strcasecmp(despesa->orc.tipo, despesa->next->orc.tipo)==0){ //se o próximo elemento for o mesmo tipo
+            contagem += despesa->orc.preco;
+            despesa = despesa -> next;
+
+        }
+        else if (strcasecmp(despesa->orc.tipo, despesa->next->orc.tipo)!=0){ //se o próximo elemento for um tipo diferente
+            contagem += despesa->orc.preco;
+            printf("Despesas totais do tipo %s : %d\n", despesa->orc.tipo, contagem);
+            inserir_despesas_totais(lista_despesas_totais, despesa, contagem);
+            contagem = 0;
+            despesa = despesa -> next;
+        }
+    }
+}
+
+void inserir_despesas_totais(node_despesa_total *lista_despesas_totais, node_despesa* despesa, int contagem){
+    node_despesa_total *novo = calloc(sizeof(node_despesa_total),1);
+    strcpy(novo->despesa.despesa, despesa->orc.tipo);
+    novo->despesa.total = contagem;
+    node_despesa_total *aux = lista_despesas_totais;
+    while (aux->next!=NULL) aux = aux->next;
+    novo->next = aux-> next;
+    aux->next = novo;
+};
+
+void desvio_despesas(node_despesa_total * despesa_final, node_orcamento *lista){
+    if (despesa_final->despesa.total == 0) despesa_final = despesa_final->next;
+    printf("Os seguintes orçamentos sofreram um desvio superior a 10 por cento:\n");
+    //if (despesa_final == NULL) printf ("Oi");
+    while (despesa_final != NULL){
+        int desvio = lista->orc.valor/10;
+        if ((despesa_final->despesa.total-desvio)>lista->orc.valor){
+            printf("Tipo: %s - Valor: %d", lista->orc.tipo, despesa_final->despesa.total);
+        }
     }
 }

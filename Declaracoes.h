@@ -20,6 +20,11 @@ typedef struct _despesas{
     char tipo[MAXTAMANHO];
 }despesas;
 
+typedef struct _despesa_total{
+    char despesa[MAXTAMANHO];
+    int total;
+}despesa_total;
+
 typedef struct node_orcamento {
     orcamentado orc;
     struct node_orcamento *next;
@@ -30,6 +35,11 @@ typedef struct node_despesa {
     struct node_despesa *next;
 }node_despesa;
 
+typedef struct node_despesa_total {
+    despesa_total despesa;
+    struct node_despesa_total *next;
+}node_despesa_total;
+
 // ----------------------------------------------------------------- //
 
 // --------------------- DECLARAR AS FUNÇÕES --------------------- //
@@ -37,6 +47,7 @@ typedef struct node_despesa {
 //0. NODES
 node_orcamento* create_list_orcamento();
 node_despesa* create_list_despesa();
+node_despesa_total* create_list_despesa_total();
 
 //1. ORÇAMENTO
 void input_orcamento(node_orcamento* lista_orcamentos);
@@ -49,7 +60,6 @@ void atualizar_orcamento(node_orcamento* lista_orcamentos);
 void input_despesas(node_despesa* lista_despesas);
 void inserir_despesa(node_despesa* lista_despesas, char* descricao, int preco, char* tipo);
 void print_despesa(node_despesa* despesa);
-void despesas_totais(node_despesa *despesa);
 void atualizar_lista_dois(node_despesa* lista_despesas, char* descricao, int preco);
 void atualizar_despesas(node_despesa* lista_despesas);
 
@@ -62,6 +72,12 @@ void escrever_despesas(node_despesa *novo);
 //4. LIMPEZA
 void limpar_orcamentos(node_orcamento *lista);
 void limpar_despesas(node_despesa* despesa);
+
+//5. PROGRAMA 2
+void despesas_totais(node_despesa *despesa, node_despesa_total* lista_despesas_totais);
+void inserir_despesas_totais(node_despesa_total *lista_despesas_totais, node_despesa* despesa, int contagem);
+void desvio_despesas(node_despesa_total * despesa_final, node_orcamento *lista);
+
 
 // -------------------------------------------------------------- //
 
