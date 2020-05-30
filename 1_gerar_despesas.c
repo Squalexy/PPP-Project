@@ -4,10 +4,10 @@ int main() {
 
     char introduzir[MAXTAMANHO];
     int input = 0;
-    node_orcamento* lista_orcamentos = create_list_orcamento(); //Cria desde já uma primeira lista, antes do programa começar a funcionar
-    node_despesa* lista_despesas = create_list_despesa();
+    node_orcamento *lista_orcamentos = create_list_orcamento(); //Cria desde já uma primeira lista, antes do programa começar a funcionar
+    node_despesa *lista_despesas = create_list_despesa();
 
-    while(input != 11){
+    while (input != 11) {
         printf("\nEscolha uma opção: \n");
         printf("1 - Ler ficheiro de orçamento\n");
         printf("2 - Ler ficheiro de despesas\n");
@@ -22,9 +22,9 @@ int main() {
         printf("11 - Sair\n");
 
         fgets(introduzir, MAXTAMANHO, stdin);
-        input = (int)strtol(introduzir, NULL,10);
+        input = (int) strtol(introduzir, NULL, 10);
 
-        switch(input){
+        switch (input) {
             case 1:
                 ler_orcamento(lista_orcamentos);
                 break;

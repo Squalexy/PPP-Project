@@ -10,8 +10,8 @@ node_despesa *create_list_despesa() {
     return calloc(sizeof(node_despesa), 1);
 }
 
-node_despesa_total *create_list_despesa_total(){
-    return calloc(sizeof(node_despesa_total),1);
+node_despesa_total *create_list_despesa_total() {
+    return calloc(sizeof(node_despesa_total), 1);
 }
 
 // ---------- FUNCOES --------- //
@@ -23,11 +23,11 @@ void input_orcamento(node_orcamento *lista_orcamentos) {
     int preco;
     printf("Nome do tipo: \n");
     fgets(tipo, MAXTAMANHO, stdin);
-    tipo[strlen(tipo)-1] = '\0'; //para não meter um \n
+    tipo[strlen(tipo) - 1] = '\0'; //para não meter um \n
     printf("Valor do tipo: \n");
     fgets(valor, MAXTAMANHO, stdin);
-    valor[strlen(valor)-1] = '\0';
-    preco = (int)strtol(valor,NULL,0);
+    valor[strlen(valor) - 1] = '\0';
+    preco = (int) strtol(valor, NULL, 0);
     inserir_orcamento(lista_orcamentos, tipo, preco);
 }
 
@@ -36,7 +36,7 @@ void inserir_orcamento(node_orcamento *lista_orcamentos, char *tipo, int valor) 
     strcpy(novo->orc.tipo, tipo);
     novo->orc.valor = valor;
     node_orcamento *aux = lista_orcamentos;
-    while (aux->next != NULL && strcasecmp(aux->next->orc.tipo, tipo)<0) { //Ordem alfabética
+    while (aux->next != NULL && strcasecmp(aux->next->orc.tipo, tipo) < 0) { //Ordem alfabética
         aux = aux->next;
     }
     novo->next = aux->next;
@@ -67,11 +67,11 @@ void atualizar_orcamento(node_orcamento *lista_orcamentos) {
     int preco;
     printf("Nome do tipo que quer atualizar: \n");
     fgets(tipo, MAXTAMANHO, stdin);
-    tipo[strlen(tipo)-1] = '\0';
+    tipo[strlen(tipo) - 1] = '\0';
     printf("Valor do tipo que quer atualizar: \n");
     fgets(valor, MAXTAMANHO, stdin);
-    valor[strlen(valor)-1] = '\0';
-    preco = (int)strtol(valor,NULL,0);
+    valor[strlen(valor) - 1] = '\0';
+    preco = (int) strtol(valor, NULL, 0);
     atualizar_lista(lista_orcamentos, tipo, preco);
 }
 
@@ -84,14 +84,14 @@ void input_despesas(node_despesa *lista_despesas) {
     int preco;
     printf("Descrição da despesa: \n");
     fgets(descricao, MAXTAMANHO, stdin);
-    descricao[strlen(descricao)-1] = '\0';
+    descricao[strlen(descricao) - 1] = '\0';
     printf("Valor da despesa: \n");
     fgets(valor, MAXTAMANHO, stdin);
-    valor[strlen(valor)-1] = '\0';
-    preco = (int)strtol(valor,NULL,0);
+    valor[strlen(valor) - 1] = '\0';
+    preco = (int) strtol(valor, NULL, 0);
     printf("Tipo de despesa: \n");
     fgets(tipo, MAXTAMANHO, stdin);
-    tipo[strlen(tipo)-1] = '\0';
+    tipo[strlen(tipo) - 1] = '\0';
     inserir_despesa(lista_despesas, descricao, preco, tipo);
 }
 
@@ -102,11 +102,11 @@ void inserir_despesa(node_despesa *lista_despesas, char *descricao, int preco, c
     strcpy(novo->orc.tipo, tipo);
     novo->next = NULL;
     node_despesa *aux = lista_despesas;
-    while (aux->next != NULL && strcasecmp(aux->next->orc.tipo, tipo)<0) {
+    while (aux->next != NULL && strcasecmp(aux->next->orc.tipo, tipo) < 0) {
         aux = aux->next;
     }
-    novo -> next = aux -> next;
-    aux -> next = novo;
+    novo->next = aux->next;
+    aux->next = novo;
 }
 
 void print_despesa(node_despesa *despesa) {
@@ -134,11 +134,11 @@ void atualizar_despesas(node_despesa *lista_despesas) {
     int preco;
     printf("Nome da descrição que quer atualizar: \n");
     fgets(descricao, MAXTAMANHO, stdin);
-    descricao[strlen(descricao)-1] = '\0';
+    descricao[strlen(descricao) - 1] = '\0';
     printf("Valor da descricao que quer atualizar: \n");
     fgets(valor, MAXTAMANHO, stdin);
-    valor[strlen(valor)-1] = '\0';
-    preco = (int)strtol(valor,NULL,0);
+    valor[strlen(valor) - 1] = '\0';
+    preco = (int) strtol(valor, NULL, 0);
     atualizar_lista_dois(lista_despesas, descricao, preco);
 }
 
@@ -208,10 +208,9 @@ void escrever_despesas(node_despesa *novo) {
     fclose(fptr);
 }
 
-//Funções para limpar_orcamentos a lista e não duplicá-la cada vez que ler o ficheiro de orçamento
+//Funções para limpar orçamentos e listas cada vez que os ler para não duplicá-los ao fazer print
 //Pode acontecer eu ler um ficheiro, adicionar um elemento à lista, acrescentá-lo ao ficheiro e ler novamente o ficheiro
-//Como não limpei a lista, ele iria ler o ficheiro antigo (sem o elemento adicionado) e o ficheiro novo, ou seja, iria duplicar os elementos
-//já existentes
+//Como não limpei a lista, ele iria ler o ficheiro antigo (sem o elemento adicionado) e o ficheiro novo, ou seja, iria duplicar os elementos já existentes
 void limpar_orcamentos(node_orcamento *lista) {
     node_orcamento *copia = lista;
     lista = lista->next;
@@ -222,7 +221,8 @@ void limpar_orcamentos(node_orcamento *lista) {
         lista = next;
     }
 }
-void limpar_despesas(node_despesa* despesa) {
+
+void limpar_despesas(node_despesa *despesa) {
     node_despesa *copia = despesa;
     despesa = despesa->next;
     copia->next = NULL;
@@ -233,39 +233,53 @@ void limpar_despesas(node_despesa* despesa) {
     }
 }
 
-void despesas_totais(node_despesa *despesa, node_despesa_total* lista_despesas_totais){
+//Insere na lista o tipo de despesas (ex: ALIMENTAÇÃO) e o valor total das despesas
+//Compara sempre com o elemento a seguir para saber quando dar reset às despesas se o tipo for diferente (ex: ALIMENTAÇÃO e TRANSPORTES)
+void despesas_totais(node_despesa *despesa, node_despesa_total *lista_despesas_totais) {
     int contagem = 0;
     if (despesa->orc.preco == 0) despesa = despesa->next;
-    while (despesa != NULL && despesa->next != NULL){
-        if (strcasecmp(despesa->orc.tipo, despesa->next->orc.tipo)==0){ //se o próximo elemento for o mesmo tipo
+    while (despesa != NULL && despesa->next != NULL) {
+        if (despesa->next == NULL) {
             contagem += despesa->orc.preco;
-        } else { //se o próximo elemento for um tipo diferente
+            printf("Despesas totais do tipo %s : %d\n", despesa->orc.tipo, contagem);
+            inserir_despesas_totais(lista_despesas_totais, despesa, contagem);
+        } else if (strcasecmp(despesa->orc.tipo, despesa->next->orc.tipo) ==
+                   0) { //se o próximo elemento for o mesmo tipo
+            contagem += despesa->orc.preco;
+        } else {//se o próximo elemento for um tipo diferente
             contagem += despesa->orc.preco;
             printf("Despesas totais do tipo %s : %d\n", despesa->orc.tipo, contagem);
             inserir_despesas_totais(lista_despesas_totais, despesa, contagem);
             contagem = 0;
         }
-        despesa = despesa -> next;
+        despesa = despesa->next;
     }
 }
 
-void inserir_despesas_totais(node_despesa_total *lista_despesas_totais, node_despesa* despesa, int contagem){
-    node_despesa_total *novo = calloc(sizeof(node_despesa_total),1);
+//Aloca memória a uma nova lista onde inserir tipo da despesa (ex: ALIMENTAÇÃO) e o valor total das despesas desse tipo
+void inserir_despesas_totais(node_despesa_total *lista_despesas_totais, node_despesa *despesa, int contagem) {
+    node_despesa_total *novo = calloc(sizeof(node_despesa_total), 1);
     strcpy(novo->despesa.despesa, despesa->orc.tipo);
     novo->despesa.total = contagem;
     node_despesa_total *aux = lista_despesas_totais;
-    while (aux->next!=NULL) aux = aux->next;
-    novo->next = aux-> next;
+    while (aux->next != NULL) aux = aux->next;
+    novo->next = aux->next;
     aux->next = novo;
 };
 
-void desvio_despesas(node_despesa_total * despesa_final, node_orcamento *lista){
+//Guarda numa lista as despesas que têm um valor superior a 10% em relação ao orçamentado inicialmente
+//Ex: despesa 220, orçamento 150; desvio de 70 euros ou 46%
+void desvio_despesas(node_despesa_total *despesa_final, node_orcamento *lista) {
     if (despesa_final->despesa.total == 0) despesa_final = despesa_final->next;
+    if (lista->orc.valor == 0) lista = lista->next;
+    if (lista == NULL) printf ("A lista de orçamento é NULL\n");
     printf("Os seguintes orçamentos sofreram um desvio superior a 10 por cento:\n");
-    while (despesa_final != NULL){
-        int desvio = lista->orc.valor/10;
-        if ((despesa_final->despesa.total-desvio)>lista->orc.valor){
+    while (despesa_final != NULL && lista != NULL) {
+        int desvio = lista->orc.valor / 10;
+        if ((despesa_final->despesa.total - desvio) > lista->orc.valor) {
             printf("Tipo: %s - Valor: %d\n", lista->orc.tipo, despesa_final->despesa.total);
         }
+        despesa_final = despesa_final->next;
+        lista = lista->next;
     }
 }
