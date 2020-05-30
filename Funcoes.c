@@ -75,7 +75,6 @@ void atualizar_orcamento(node_orcamento *lista_orcamentos) {
     atualizar_lista(lista_orcamentos, tipo, preco);
 }
 
-
 //2. DESPESAS
 
 void input_despesas(node_despesa *lista_despesas) {
@@ -143,7 +142,6 @@ void atualizar_despesas(node_despesa *lista_despesas) {
     atualizar_lista_dois(lista_despesas, descricao, preco);
 }
 
-
 //3. FICHEIROS
 
 void ler_orcamento(node_orcamento *lista) {
@@ -161,9 +159,6 @@ void ler_orcamento(node_orcamento *lista) {
     free(aux);
     fclose(fptr);
 }
-
-//}
-
 
 void escrever_orcamento(node_orcamento *novo) {
     FILE *fptr;
@@ -245,7 +240,6 @@ void despesas_totais(node_despesa *despesa, node_despesa_total* lista_despesas_t
         if (strcasecmp(despesa->orc.tipo, despesa->next->orc.tipo)==0){ //se o próximo elemento for o mesmo tipo
             contagem += despesa->orc.preco;
             despesa = despesa -> next;
-
         }
         else if (strcasecmp(despesa->orc.tipo, despesa->next->orc.tipo)!=0){ //se o próximo elemento for um tipo diferente
             contagem += despesa->orc.preco;
@@ -270,11 +264,10 @@ void inserir_despesas_totais(node_despesa_total *lista_despesas_totais, node_des
 void desvio_despesas(node_despesa_total * despesa_final, node_orcamento *lista){
     if (despesa_final->despesa.total == 0) despesa_final = despesa_final->next;
     printf("Os seguintes orçamentos sofreram um desvio superior a 10 por cento:\n");
-    //if (despesa_final == NULL) printf ("Oi");
     while (despesa_final != NULL){
         int desvio = lista->orc.valor/10;
         if ((despesa_final->despesa.total-desvio)>lista->orc.valor){
-            printf("Tipo: %s - Valor: %d", lista->orc.tipo, despesa_final->despesa.total);
+            printf("Tipo: %s - Valor: %d\n", lista->orc.tipo, despesa_final->despesa.total);
         }
     }
 }

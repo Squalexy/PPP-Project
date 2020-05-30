@@ -23,10 +23,10 @@ int main() {
                 print_orcamento(lista_orcamentos);
                 break;
             case 2:
-                //ler_despesas(lista_despesas);
+                ler_despesas(lista_despesas);
                 //print_despesa(lista_despesas);
                 despesas_totais(lista_despesas, lista_despesas_totais);
-                desvio_despesas(lista_despesas_totais, lista_orcamentos);
+                //desvio_despesas(lista_despesas_totais, lista_orcamentos);
                 break;
             case 3:
                 //limpar_despesas(lista_despesas);
