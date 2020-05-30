@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/c/Users/squal/CLionProjects/PROJETO/1_gerar_despesas.c
+Declaracoes.h
+/cygdrive/c/Users/squal/CLionProjects/PROJETO/Declaracoes.h
+
+/cygdrive/c/Users/squal/CLionProjects/PROJETO/Declaracoes.h
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+
