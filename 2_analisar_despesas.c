@@ -9,6 +9,14 @@ int main() {
     node_despesa_total *lista_despesas_totais = create_list_despesa_total();
     node_desvio_orcamento *lista_desvio_orcamento = create_list_desvio_orcamento();
 
+    FILE* config = NULL;
+    char ficheiro1[MAXTAMANHO];
+    char ficheiro2[MAXTAMANHO];
+
+    config = fopen("config.txt","r");
+    get_one_line(config,ficheiro1,MAXTAMANHO);
+    get_one_line(config,ficheiro2,MAXTAMANHO);
+
     while (input != 3) {
         printf("Escolha o ficheiro que pretende abrir:\n");
         printf("1 - Orçamento\n");
@@ -29,8 +37,8 @@ int main() {
                 //print_despesa(lista_despesas);
                 despesas_totais(lista_despesas, lista_despesas_totais);
                 desvio_despesas(lista_desvio_orcamento, lista_orcamentos, lista_despesas_totais);
-                escrever_despesas_totais(lista_despesas_totais);
-                escrever_desvio_orcamento(lista_desvio_orcamento);
+                escrever_despesas_totais(lista_despesas_totais, ficheiro1);
+                escrever_desvio_orcamento(lista_desvio_orcamento, ficheiro2);
                 break;
             case 3:
                 //limpar_despesas(lista_despesas);

@@ -313,10 +313,10 @@ inserir_desvio_orcamento(node_desvio_orcamento *lista_desvio_orcamento, node_orc
 }
 
 
-//6. ESCREVER FICHEIRO DE SAÍDA
-void escrever_despesas_totais(node_despesa_total *novo) {
+//6. ESCREVER FICHEIROS DE SAÍDA
+void escrever_despesas_totais(node_despesa_total *novo, char *nome) {
     FILE *fptr;
-    fptr = fopen("config.txt", "w");
+    fptr = fopen(nome, "w");
     if (fptr == NULL) {
         fprintf(stderr, "Erro a abrir ficheiro\n");
         exit(1);
@@ -330,10 +330,10 @@ void escrever_despesas_totais(node_despesa_total *novo) {
     fclose(fptr);
 }
 
-void escrever_desvio_orcamento(node_desvio_orcamento *novo) {
+void escrever_desvio_orcamento(node_desvio_orcamento *novo, char *nome2) {
     int desvio_global = 0;
     FILE *fptr;
-    fptr = fopen("config2.txt", "w");
+    fptr = fopen(nome2, "w");
     if (fptr == NULL) {
         fprintf(stderr, "Erro a abrir ficheiro\n");
         exit(1);
@@ -350,4 +350,27 @@ void escrever_desvio_orcamento(node_desvio_orcamento *novo) {
     }
     fprintf(fptr, "\nDESVIO GLOBAL: %d\n", desvio_global);
     fclose(fptr);
+}
+
+int get_one_line(FILE * fich, char *linha, int lim) {
+    int c, i;
+    i = 0;
+    while (isspace(c = fgetc(fich)));
+    if (c != EOF) {
+        if (!iscntrl(c)) linha[i++] = c;
+    } else
+        return c;
+
+    for (; i < lim - 1;) {
+        c = fgetc(fich);
+        if (c == EOF)
+            return c;
+        if (c == '\n')
+            break;
+        if (!iscntrl(c)) linha[i++] = c;
+    }
+    linha[i] = 0;
+    while ((c != EOF) && (c != '\n'))
+        c = fgetc(fich);
+    return c;
 }
