@@ -47,3 +47,4 @@ void desvio_despesas(node_desvio_orcamento *lista_desvio_orcamento, node_orcamen
 void inserir_desvio_orcamento(node_desvio_orcamento* lista_desvio_orcamento, node_orcamento* lista, int desvio_despesa);
 void escrever_despesas_totais(node_despesa_total *novo, char *nome);
 void escrever_desvio_orcamento(node_desvio_orcamento* novo, char *nome2);
+int get_one_line(FILE * fich, char *linha, int lim);

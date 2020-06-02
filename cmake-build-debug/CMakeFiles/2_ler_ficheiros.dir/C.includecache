@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/cygdrive/c/Users/squal/CLionProjects/PROJETO/2_analisar_despesas.c
+Declaracoes.h
+/cygdrive/c/Users/squal/CLionProjects/PROJETO/Declaracoes.h
+
 /cygdrive/c/Users/squal/CLionProjects/PROJETO/Declaracoes.h
 stdio.h
 -
@@ -19,8 +23,4 @@ Estruturas.h
 /cygdrive/c/Users/squal/CLionProjects/PROJETO/Estruturas.h
 
 /cygdrive/c/Users/squal/CLionProjects/PROJETO/Estruturas.h
-
-/cygdrive/c/Users/squal/CLionProjects/PROJETO/Funcoes.c
-Declaracoes.h
-/cygdrive/c/Users/squal/CLionProjects/PROJETO/Declaracoes.h
 
