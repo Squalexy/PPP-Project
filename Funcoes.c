@@ -14,6 +14,10 @@ node_despesa_total *create_list_despesa_total() {
     return calloc(sizeof(node_despesa_total), 1);
 }
 
+node_desvio_orcamento *create_list_desvio_orcamento() {
+    return calloc(sizeof(node_desvio_orcamento), 1);
+}
+
 // ---------- FUNCOES --------- //
 //1. ORÇAMENTO
 
@@ -267,19 +271,83 @@ void inserir_despesas_totais(node_despesa_total *lista_despesas_totais, node_des
     aux->next = novo;
 };
 
+
 //Guarda numa lista as despesas que têm um valor superior a 10% em relação ao orçamentado inicialmente
-//Ex: despesa 220, orçamento 150; desvio de 70 euros ou 46%
-void desvio_despesas(node_despesa_total *despesa_final, node_orcamento *lista) {
-    if (despesa_final->despesa.total == 0) despesa_final = despesa_final->next;
+//Ex: despesa 220, orçamento 150; lista_desvio_orcamento de 70 euros ou 46%
+void desvio_despesas(node_desvio_orcamento *lista_desvio_orcamento, node_orcamento *lista,
+                     node_despesa_total *lista_despesas_totais) {
+
     if (lista->orc.valor == 0) lista = lista->next;
-    if (lista == NULL) printf ("A lista de orçamento é NULL\n");
-    printf("Os seguintes orçamentos sofreram um desvio superior a 10 por cento:\n");
-    while (despesa_final != NULL && lista != NULL) {
-        int desvio = lista->orc.valor / 10;
-        if ((despesa_final->despesa.total - desvio) > lista->orc.valor) {
-            printf("Tipo: %s - Valor: %d\n", lista->orc.tipo, despesa_final->despesa.total);
+    if (lista_despesas_totais->despesa.total == 0) lista_despesas_totais = lista_despesas_totais->next;
+    printf("Os seguintes orçamentos sofreram um lista_desvio_orcamento superior a 10%%:\n");
+
+    while (lista_despesas_totais != NULL && lista != NULL) {
+        int desvio_despesa;
+        int percentagem = (((lista_despesas_totais->despesa.total) * 100) / lista->orc.valor) - 100;
+        if ((lista_despesas_totais->despesa.total - lista_desvio_orcamento->desvioOrc.desvio) >
+            lista->orc.valor) { //ex: se despesas220-desvio20 > orc200
+            printf("Tipo: %s - Valor: %d - Desvio: %d%% (+%d) - Orçamento inicial: %d\n", lista->orc.tipo,
+                   lista_despesas_totais->despesa.total, percentagem,
+                   lista_despesas_totais->despesa.total - lista->orc.valor, lista->orc.valor);
+            desvio_despesa = lista_despesas_totais->despesa.total - lista->orc.valor;
+            inserir_desvio_orcamento(lista_desvio_orcamento, lista, desvio_despesa);
         }
-        despesa_final = despesa_final->next;
         lista = lista->next;
+        lista_despesas_totais = lista_despesas_totais->next;
     }
+}
+
+void
+inserir_desvio_orcamento(node_desvio_orcamento *lista_desvio_orcamento, node_orcamento *lista, int desvio_despesa) {
+    node_desvio_orcamento *novo = calloc(sizeof(node_desvio_orcamento), 1);
+    strcpy(novo->desvioOrc.orc, lista->orc.tipo);
+    novo->desvioOrc.original = lista->orc.valor;
+    novo->desvioOrc.desvio = desvio_despesa;
+    //PARA VERIFICAR SE ESTÁ A ADICIONAR CORRETAMENTE
+    //printf("Orcamento inicial de %s: %d \t Orcamento final: %d \t Desvio: %d\n", novo2->desvioOrc.orc, novo2->desvioOrc.original,
+    //      novo2->desvioOrc.original + novo2->desvioOrc.desvio, novo2->desvioOrc.desvio);
+    node_desvio_orcamento *aux = lista_desvio_orcamento;
+    while (aux->next != NULL) aux = aux->next;
+    novo->next = aux->next;
+    aux->next = novo;
+}
+
+
+//6. ESCREVER FICHEIRO DE SAÍDA
+void escrever_despesas_totais(node_despesa_total *novo) {
+    FILE *fptr;
+    fptr = fopen("config.txt", "w");
+    if (fptr == NULL) {
+        fprintf(stderr, "Erro a abrir ficheiro\n");
+        exit(1);
+    } else {
+        while (novo != NULL) {
+            if (novo->despesa.total == 0) novo = novo->next;
+            fprintf(fptr, "VALOR TOTAL DA DESPESA %s: %d\n", novo->despesa.despesa, novo->despesa.total);
+            novo = novo->next;
+        }
+    }
+    fclose(fptr);
+}
+
+void escrever_desvio_orcamento(node_desvio_orcamento *novo) {
+    int desvio_global = 0;
+    FILE *fptr;
+    fptr = fopen("config2.txt", "w");
+    if (fptr == NULL) {
+        fprintf(stderr, "Erro a abrir ficheiro\n");
+        exit(1);
+    } else {
+        while (novo != NULL) {
+            if (novo->desvioOrc.original == 0) novo = novo->next;
+            int despesa_total = novo->desvioOrc.original + novo->desvioOrc.desvio;
+            int percentagem = (((despesa_total) * 100) / novo->desvioOrc.original) - 100;
+            fprintf(fptr, "ORCAMENTO INICIAL DE %s: %d\tORCAMENTO FINAL: %d\t\tDESVIO:%d (+%d%%)\n",
+                    novo->desvioOrc.orc, novo->desvioOrc.original, despesa_total, novo->desvioOrc.desvio, percentagem);
+            desvio_global += novo->desvioOrc.desvio;
+            novo = novo->next;
+        }
+    }
+    fprintf(fptr, "\nDESVIO GLOBAL: %d\n", desvio_global);
+    fclose(fptr);
 }
