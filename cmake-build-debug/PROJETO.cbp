@@ -120,6 +120,10 @@
 			<Option target="1_gerar_ficheiros"/>
 			<Option target="2_ler_ficheiros"/>
 		</Unit>
+		<Unit filename="/cygdrive/c/Users/squal/CLionProjects/PROJETO/Estruturas.h">
+			<Option target="1_gerar_ficheiros"/>
+			<Option target="2_ler_ficheiros"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/Users/squal/CLionProjects/PROJETO/Funcoes.c">
 			<Option target="1_gerar_ficheiros"/>
 			<Option target="2_ler_ficheiros"/>
