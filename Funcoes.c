@@ -252,21 +252,22 @@ void limpar_despesas() {
 
 //Insere na lista o tipo de despesas (ex: ALIMENTAÇÃO) e o valor total das despesas
 //Compara sempre com o elemento a seguir para saber quando dar reset às despesas se o tipo for diferente (ex: ALIMENTAÇÃO e TRANSPORTES)
-void despesas_totais(node_despesa *despesa, node_despesa_total *lista_despesas_totais) {
+void despesas_totais() {
+    node_despesa *despesa = lista_despesas;
     int contagem = 0;
     if (despesa->orc.preco == 0) despesa = despesa->next;
     while (despesa != NULL && despesa->next != NULL) {
         if (despesa->next == NULL) {
             contagem += despesa->orc.preco;
             printf("Despesas totais do tipo %s : %d\n", despesa->orc.tipo, contagem);
-            inserir_despesas_totais(lista_despesas_totais, despesa, contagem);
+            inserir_despesas_totais(despesa, contagem);
         } else if (strcasecmp(despesa->orc.tipo, despesa->next->orc.tipo) ==
                    0) { //se o próximo elemento for o mesmo tipo
             contagem += despesa->orc.preco;
         } else {//se o próximo elemento for um tipo diferente
             contagem += despesa->orc.preco;
             printf("Despesas totais do tipo %s : %d\n", despesa->orc.tipo, contagem);
-            inserir_despesas_totais(lista_despesas_totais, despesa, contagem);
+            inserir_despesas_totais(despesa, contagem);
             contagem = 0;
         }
         despesa = despesa->next;
@@ -274,7 +275,7 @@ void despesas_totais(node_despesa *despesa, node_despesa_total *lista_despesas_t
 }
 
 //Aloca memória a uma nova lista onde inserir tipo da despesa (ex: ALIMENTAÇÃO) e o valor total das despesas desse tipo
-void inserir_despesas_totais(node_despesa_total *lista_despesas_totais, node_despesa *despesa, int contagem) {
+void inserir_despesas_totais(node_despesa *despesa, int contagem) {
     node_despesa_total *novo = calloc(sizeof(node_despesa_total), 1);
     strcpy(novo->despesa.despesa, despesa->orc.tipo);
     novo->despesa.total = contagem;
@@ -287,29 +288,31 @@ void inserir_despesas_totais(node_despesa_total *lista_despesas_totais, node_des
 
 //Guarda numa lista as despesas que têm um valor superior a 10% em relação ao orçamentado inicialmente
 //Ex: despesa 220, orçamento 150; lista_desvio_orcamento de 70 euros ou 46%
-void desvio_despesas(node_desvio_orcamento *lista_desvio_orcamento, node_orcamento *lista,
-                     node_despesa_total *lista_despesas_totais) {
+void desvio_despesas() {
+    node_orcamento *l_orc = lista_orcamentos;
+    node_despesa_total *l_desp_tot = l_desp_tot;
+    node_desvio_orcamento *l_desv_orc = l_desv_orc;
+    if (l_orc->orc.valor == 0) l_orc = l_orc->next;
+    if (l_desp_tot->despesa.total == 0) l_desp_tot = l_desp_tot->next;
+    printf("Os seguintes orçamentos sofreram um l_desv_orc superior a 10%%:\n");
 
-    if (lista->orc.valor == 0) lista = lista->next;
-    if (lista_despesas_totais->despesa.total == 0) lista_despesas_totais = lista_despesas_totais->next;
-    printf("Os seguintes orçamentos sofreram um lista_desvio_orcamento superior a 10%%:\n");
-
-    while (lista_despesas_totais != NULL && lista != NULL) {
+    while (l_desp_tot != NULL && l_orc != NULL) {
         int desvio_despesa;
-        int percentagem = (((lista_despesas_totais->despesa.total) * 100) / lista->orc.valor) - 100;
-        if ((lista_despesas_totais->despesa.total - lista_desvio_orcamento->desvioOrc.desvio) >
-            lista->orc.valor) { //ex: se despesas220-desvio20 > orc200
-            printf("Tipo: %s - Valor: %d - Desvio: %d%% (+%d) - Orçamento inicial: %d\n", lista->orc.tipo,
-                   lista_despesas_totais->despesa.total, percentagem,
-                   lista_despesas_totais->despesa.total - lista->orc.valor, lista->orc.valor);
-            desvio_despesa = lista_despesas_totais->despesa.total - lista->orc.valor;
-            inserir_desvio_orcamento(lista_desvio_orcamento, lista, desvio_despesa);
+        int percentagem = (((l_desp_tot->despesa.total) * 100) / l_orc->orc.valor) - 100;
+        if ((l_desp_tot->despesa.total - l_desv_orc->desvioOrc.desvio) >
+            l_orc->orc.valor) { //ex: se despesas220-desvio20 > orc200
+            printf("Tipo: %s - Valor: %d - Desvio: %d%% (+%d) - Orçamento inicial: %d\n", l_orc->orc.tipo,
+                   l_desp_tot->despesa.total, percentagem,
+                   l_desp_tot->despesa.total - l_orc->orc.valor, l_orc->orc.valor);
+            desvio_despesa = l_desp_tot->despesa.total - l_orc->orc.valor;
+            inserir_desvio_orcamento(l_desv_orc, l_orc, desvio_despesa);
         }
-        lista = lista->next;
-        lista_despesas_totais = lista_despesas_totais->next;
+        l_orc = l_orc->next;
+        l_desp_tot = l_desp_tot->next;
     }
 }
 
+//CONTINUE STATIC CHANGES HERE TODO
 void
 inserir_desvio_orcamento(node_desvio_orcamento *lista_desvio_orcamento, node_orcamento *lista, int desvio_despesa) {
     node_desvio_orcamento *novo = calloc(sizeof(node_desvio_orcamento), 1);
