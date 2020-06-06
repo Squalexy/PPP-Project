@@ -46,38 +46,38 @@ int main() {
         input = (int) strtol(introduzir, NULL, 10);
         switch (input) {
             case 1:
-                ler_orcamento(lista_orcamentos);
+                ler_orcamento();
                 break;
             case 2:
-                ler_despesas(lista_despesas);
+                ler_despesas();
                 break;
             case 3:
                 input_orcamento(lista_orcamentos);
                 break;
             case 4:
-                input_despesas(lista_despesas);
+                input_despesas();
                 break;
             case 5:
-                atualizar_orcamento(lista_orcamentos);
+                atualizar_orcamento();
                 break;
             case 6:
-                atualizar_despesas(lista_despesas);
+                atualizar_despesas();
                 break;
             case 7:
-                print_orcamento(lista_orcamentos);
+                print_orcamento();
                 break;
             case 8:
-                print_despesa(lista_despesas);
+                print_despesa();
                 break;
             case 9:
-                escrever_orcamento(lista_orcamentos);
+                escrever_orcamento();
                 break;
             case 10:
-                escrever_despesas(lista_despesas);
+                escrever_despesas();
                 break;
             case 11:
-                limpar_despesas(lista_despesas);
-                limpar_orcamentos(lista_orcamentos);
+                limpar_despesas();
+                limpar_orcamentos();
                 free(lista_despesas);
                 free(lista_orcamentos);
                 return 0;

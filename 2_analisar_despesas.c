@@ -5,10 +5,10 @@ int main() {
     int validade;
     char introduzir[MAXTAMANHO];
     int input = 0;
-    node_orcamento *lista_orcamentos = create_list_orcamento(); //Cria desde já uma primeira lista, antes do programa começar a funcionar
-    node_despesa *lista_despesas = create_list_despesa();
-    node_despesa_total *lista_despesas_totais = create_list_despesa_total();
-    node_desvio_orcamento *lista_desvio_orcamento = create_list_desvio_orcamento();
+    create_list_orcamento();
+    create_list_despesa();
+    create_list_despesa_total();
+    create_list_desvio_orcamento();
 
     FILE *config = NULL;
     char ficheiro1[MAXTAMANHO];
@@ -41,12 +41,12 @@ int main() {
         input = (int) strtol(introduzir, NULL, 10);
         switch (input) {
             case 1:
-                ler_orcamento(lista_orcamentos);
-                print_orcamento(lista_orcamentos);
+                ler_orcamento();
+                print_orcamento();
                 break;
             case 2:
-                ler_despesas(lista_despesas);
-                ler_orcamento(lista_orcamentos);
+                ler_despesas();
+                ler_orcamento();
                 //print_despesa(lista_despesas);
                 despesas_totais(lista_despesas, lista_despesas_totais);
                 desvio_despesas(lista_desvio_orcamento, lista_orcamentos, lista_despesas_totais);
@@ -56,7 +56,7 @@ int main() {
             case 3:
                 //limpar_despesas(lista_despesas);
                 //limpar_orcamentos(lista_orcamentos);
-                //free(lista_despesas);
+                //free(lista_despesas);l
                 //free(lista_orcamentos);
                 return 0;
             default:

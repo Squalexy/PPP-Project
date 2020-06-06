@@ -1,1 +1,0 @@
-/usr/bin/cc -Wall -Wextra -g  -Wl,--enable-auto-import CMakeFiles/PROJETO.dir/Funcoes.c.o CMakeFiles/PROJETO.dir/1_gerar_ficheiros.c.o  -o PROJETO.exe -Wl,--out-implib,libPROJETO.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

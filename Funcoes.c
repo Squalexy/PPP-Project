@@ -2,26 +2,31 @@
 
 // --------------------------- LISTAS --------------------------- //
 
+static node_orcamento *lista_orcamentos;
+static node_despesa *lista_despesas;
+static node_despesa_total *lista_despesas_totais;
+static node_desvio_orcamento *lista_desvio_orcamento;
+
 node_orcamento *create_list_orcamento() {
-    return calloc(sizeof(node_orcamento), 1); //Cria uma lista
+    lista_orcamentos = calloc(sizeof(node_orcamento), 1); //Cria uma lista
 }
 
 node_despesa *create_list_despesa() {
-    return calloc(sizeof(node_despesa), 1);
+    lista_despesas = calloc(sizeof(node_despesa), 1);
 }
 
 node_despesa_total *create_list_despesa_total() {
-    return calloc(sizeof(node_despesa_total), 1);
+    lista_despesas_totais = calloc(sizeof(node_despesa_total), 1);
 }
 
 node_desvio_orcamento *create_list_desvio_orcamento() {
-    return calloc(sizeof(node_desvio_orcamento), 1);
+    lista_desvio_orcamento = calloc(sizeof(node_desvio_orcamento), 1);
 }
 
 // ---------- FUNCOES --------- //
 //1. ORÇAMENTO
 
-void input_orcamento(node_orcamento *lista_orcamentos) {
+void input_orcamento() {
     char tipo[MAXTAMANHO];
     char valor[MAXTAMANHO];
     int preco;
@@ -32,10 +37,10 @@ void input_orcamento(node_orcamento *lista_orcamentos) {
     fgets(valor, MAXTAMANHO, stdin);
     valor[strlen(valor) - 1] = '\0';
     preco = (int) strtol(valor, NULL, 0);
-    inserir_orcamento(lista_orcamentos, tipo, preco);
+    inserir_orcamento(tipo, preco);
 }
 
-void inserir_orcamento(node_orcamento *lista_orcamentos, char *tipo, int valor) {
+void inserir_orcamento(char *tipo, int valor) {
     node_orcamento *novo = calloc(sizeof(node_orcamento), 1);
     strcpy(novo->orc.tipo, tipo);
     novo->orc.valor = valor;
@@ -47,7 +52,8 @@ void inserir_orcamento(node_orcamento *lista_orcamentos, char *tipo, int valor) 
     aux->next = novo;
 }
 
-void print_orcamento(node_orcamento *lista) {
+void print_orcamento() {
+    node_orcamento *lista = lista_orcamentos;
     if (lista->orc.valor == 0) lista = lista->next; //calloc cria um 0 na lista
     while (lista != NULL) {
         printf("TIPO: %s - ORÇAMENTO: %d \n", lista->orc.tipo, lista->orc.valor);
@@ -55,17 +61,18 @@ void print_orcamento(node_orcamento *lista) {
     }
 }
 
-void atualizar_lista(node_orcamento *lista_orcamentos, char *tipo, int valor) {
-    while (lista_orcamentos != NULL) {
-        if (strcasecmp(lista_orcamentos->orc.tipo, tipo) == 0) {
-            lista_orcamentos->orc.valor = valor;
+void atualizar_lista(char *tipo, int valor) {
+    node_orcamento *lista = lista_orcamentos;
+    while (lista != NULL) {
+        if (strcasecmp(lista->orc.tipo, tipo) == 0) {
+            lista->orc.valor = valor;
             break;
         }
-        lista_orcamentos = lista_orcamentos->next;
+        lista = lista->next;
     }
 }
 
-void atualizar_orcamento(node_orcamento *lista_orcamentos) {
+void atualizar_orcamento() {
     char tipo[MAXTAMANHO];
     char valor[MAXTAMANHO];
     int preco;
@@ -76,12 +83,12 @@ void atualizar_orcamento(node_orcamento *lista_orcamentos) {
     fgets(valor, MAXTAMANHO, stdin);
     valor[strlen(valor) - 1] = '\0';
     preco = (int) strtol(valor, NULL, 0);
-    atualizar_lista(lista_orcamentos, tipo, preco);
+    atualizar_lista(tipo, preco);
 }
 
 //2. DESPESAS
 
-void input_despesas(node_despesa *lista_despesas) {
+void input_despesas() {
     char descricao[MAXTAMANHO];
     char tipo[MAXTAMANHO];
     char valor[MAXTAMANHO];
@@ -96,10 +103,10 @@ void input_despesas(node_despesa *lista_despesas) {
     printf("Tipo de despesa: \n");
     fgets(tipo, MAXTAMANHO, stdin);
     tipo[strlen(tipo) - 1] = '\0';
-    inserir_despesa(lista_despesas, descricao, preco, tipo);
+    inserir_despesa(descricao, preco, tipo);
 }
 
-void inserir_despesa(node_despesa *lista_despesas, char *descricao, int preco, char *tipo) {
+void inserir_despesa(char *descricao, int preco, char *tipo) {
     node_despesa *novo = calloc(sizeof(node_despesa), 1);
     strcpy(novo->orc.descricao, descricao);
     novo->orc.preco = preco;
@@ -113,7 +120,8 @@ void inserir_despesa(node_despesa *lista_despesas, char *descricao, int preco, c
     aux->next = novo;
 }
 
-void print_despesa(node_despesa *despesa) {
+void print_despesa() {
+    node_despesa *despesa = lista_despesas;
     if (despesa->orc.preco == 0) despesa = despesa->next;
     while (despesa != NULL) {
         printf("DESCRIÇÃO: %s - ORÇAMENTO: %d  - TIPO: %s\n", despesa->orc.descricao, despesa->orc.preco,
@@ -122,17 +130,18 @@ void print_despesa(node_despesa *despesa) {
     }
 }
 
-void atualizar_lista_dois(node_despesa *lista_despesas, char *descricao, int preco) {
-    while (lista_despesas != NULL) {
-        if (strcasecmp(lista_despesas->orc.descricao, descricao) == 0) {
-            lista_despesas->orc.preco = preco;
+void atualizar_lista_despesas(char *descricao, int preco) {
+    node_despesa *aux = lista_despesas;
+    while (aux != NULL) {
+        if (strcasecmp(aux->orc.descricao, descricao) == 0) {
+            aux->orc.preco = preco;
             break;
         }
-        lista_despesas = lista_despesas->next;
+        aux = aux->next;
     }
 }
 
-void atualizar_despesas(node_despesa *lista_despesas) {
+void atualizar_despesas() {
     char descricao[MAXTAMANHO];
     char valor[MAXTAMANHO];
     int preco;
@@ -143,12 +152,12 @@ void atualizar_despesas(node_despesa *lista_despesas) {
     fgets(valor, MAXTAMANHO, stdin);
     valor[strlen(valor) - 1] = '\0';
     preco = (int) strtol(valor, NULL, 0);
-    atualizar_lista_dois(lista_despesas, descricao, preco);
+    atualizar_lista_despesas(descricao, preco);
 }
 
 //3. FICHEIROS
 
-void ler_orcamento(node_orcamento *lista) {
+void ler_orcamento() {
     FILE *fptr;
     fptr = fopen("Orcamento.data", "rb");
     if (fptr == NULL) {
@@ -156,31 +165,32 @@ void ler_orcamento(node_orcamento *lista) {
         exit(1);
     }
     node_orcamento *aux = calloc(sizeof(node_orcamento), 1);
-    limpar_orcamentos(lista);
+    limpar_orcamentos();
     while (fread(aux, sizeof(node_orcamento), 1, fptr)) {
-        inserir_orcamento(lista, aux->orc.tipo, aux->orc.valor);
+        inserir_orcamento(aux->orc.tipo, aux->orc.valor);
     }
     free(aux);
     fclose(fptr);
 }
 
-void escrever_orcamento(node_orcamento *novo) {
+void escrever_orcamento() {
     FILE *fptr;
+    node_orcamento *aux = lista_orcamentos;
     fptr = fopen("Orcamento.data", "wb");
     if (fptr == NULL) {
         fprintf(stderr, "\nError opening file\n");
         exit(1);
     } else {
-        while (novo != NULL) {
-            if (novo->orc.valor == 0) novo = novo->next;
-            fwrite(novo, sizeof(node_orcamento), 1, fptr);
-            novo = novo->next;
+        while (aux != NULL) {
+            if (aux->orc.valor == 0) aux = aux->next;
+            fwrite(aux, sizeof(node_orcamento), 1, fptr);
+            aux = aux->next;
         }
     }
     fclose(fptr);
 }
 
-void ler_despesas(node_despesa *despesa) {
+void ler_despesas() {
     FILE *fptr;
     fptr = fopen("Despesas.data", "rb");
     if (fptr == NULL) {
@@ -188,25 +198,26 @@ void ler_despesas(node_despesa *despesa) {
         exit(1);
     }
     node_despesa *aux = calloc(sizeof(node_despesa), 1);
-    limpar_despesas(despesa);
+    limpar_despesas();
     while (fread(aux, sizeof(node_despesa), 1, fptr)) {
-        inserir_despesa(despesa, aux->orc.descricao, aux->orc.preco, aux->orc.tipo);
+        inserir_despesa(aux->orc.descricao, aux->orc.preco, aux->orc.tipo);
     }
     free(aux);
     fclose(fptr);
 }
 
-void escrever_despesas(node_despesa *novo) {
+void escrever_despesas() {
+    node_despesa *aux = lista_despesas;
     FILE *fptr;
     fptr = fopen("Despesas.data", "wb");
     if (fptr == NULL) {
         fprintf(stderr, "\nError opening file\n");
         exit(1);
     } else {
-        while (novo != NULL) {
-            if (novo->orc.preco == 0) novo = novo->next;
-            fwrite(novo, sizeof(node_despesa), 1, fptr);
-            novo = novo->next;
+        while (aux != NULL) {
+            if (aux->orc.preco == 0) aux = aux->next;
+            fwrite(aux, sizeof(node_despesa), 1, fptr);
+            aux = aux->next;
         }
     }
     fclose(fptr);
@@ -215,7 +226,8 @@ void escrever_despesas(node_despesa *novo) {
 //Funções para limpar orçamentos e listas cada vez que os ler para não duplicá-los ao fazer print
 //Pode acontecer eu ler um ficheiro, adicionar um elemento à lista, acrescentá-lo ao ficheiro e ler novamente o ficheiro
 //Como não limpei a lista, ele iria ler o ficheiro antigo (sem o elemento adicionado) e o ficheiro novo, ou seja, iria duplicar os elementos já existentes
-void limpar_orcamentos(node_orcamento *lista) {
+void limpar_orcamentos() {
+    node_orcamento *lista = lista_orcamentos;
     node_orcamento *copia = lista;
     lista = lista->next;
     copia->next = NULL;
@@ -226,7 +238,8 @@ void limpar_orcamentos(node_orcamento *lista) {
     }
 }
 
-void limpar_despesas(node_despesa *despesa) {
+void limpar_despesas() {
+    node_despesa *despesa = lista_despesas;
     node_despesa *copia = despesa;
     despesa = despesa->next;
     copia->next = NULL;

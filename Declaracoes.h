@@ -10,6 +10,8 @@
 #include <ctype.h>
 #include "Estruturas.h"
 
+
+
 //0. NODES
 node_orcamento* create_list_orcamento();
 node_despesa* create_list_despesa();
@@ -18,27 +20,27 @@ node_desvio_orcamento* create_list_desvio_orcamento();
 
 //1. ORÇAMENTO
 void input_orcamento(node_orcamento* lista_orcamentos);
-void inserir_orcamento(node_orcamento* lista_orcamentos, char* tipo, int valor);
-void print_orcamento(node_orcamento* lista);
-void atualizar_lista(node_orcamento* lista_orcamentos, char* tipo, int valor);
-void atualizar_orcamento(node_orcamento* lista_orcamentos);
+void inserir_orcamento(char *tipo, int valor);
+void print_orcamento();
+void atualizar_lista(char *tipo, int valor);
+void atualizar_orcamento();
 
 //2. DESPESAS
-void input_despesas(node_despesa* lista_despesas);
-void inserir_despesa(node_despesa* lista_despesas, char* descricao, int preco, char* tipo);
-void print_despesa(node_despesa* despesa);
-void atualizar_lista_dois(node_despesa* lista_despesas, char* descricao, int preco);
-void atualizar_despesas(node_despesa* lista_despesas);
+void input_despesas();
+void inserir_despesa(char *descricao, int preco, char *tipo);
+void print_despesa();
+void atualizar_lista_despesas(char *descricao, int preco);
+void atualizar_despesas();
 
 //3. FICHEIROS
-void ler_orcamento(node_orcamento* lista);
-void escrever_orcamento(node_orcamento* lista);
-void ler_despesas(node_despesa *despesa);
-void escrever_despesas(node_despesa *novo);
+void ler_orcamento();
+void escrever_orcamento();
+void ler_despesas();
+void escrever_despesas();
 
 //4. LIMPEZA
-void limpar_orcamentos(node_orcamento *lista);
-void limpar_despesas(node_despesa* despesa);
+void limpar_orcamentos();
+void limpar_despesas();
 
 //5. PROGRAMA 2
 void despesas_totais(node_despesa *despesa, node_despesa_total* lista_despesas_totais);
