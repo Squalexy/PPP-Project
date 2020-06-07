@@ -290,8 +290,8 @@ void inserir_despesas_totais(node_despesa *despesa, int contagem) {
 //Ex: despesa 220, orçamento 150; lista_desvio_orcamento de 70 euros ou 46%
 void desvio_despesas() {
     node_orcamento *l_orc = lista_orcamentos;
-    node_despesa_total *l_desp_tot = l_desp_tot;
-    node_desvio_orcamento *l_desv_orc = l_desv_orc;
+    node_despesa_total *l_desp_tot = lista_despesas_totais;
+    node_desvio_orcamento *l_desv_orc = lista_desvio_orcamento;
     if (l_orc->orc.valor == 0) l_orc = l_orc->next;
     if (l_desp_tot->despesa.total == 0) l_desp_tot = l_desp_tot->next;
     printf("Os seguintes orçamentos sofreram um l_desv_orc superior a 10%%:\n");
