@@ -310,9 +310,8 @@ void desvio_despesas() {
 }
 
 void inserir_desvio_orcamento(int desvio_despesa, orcamentado o) {
-    node_orcamento *lista = lista_orcamentos;
     node_desvio_orcamento *novo = calloc(sizeof(node_desvio_orcamento), 1);
-    strcpy(novo->desvioOrc.orc, lista->orc.tipo);
+    strcpy(novo->desvioOrc.orc, o.tipo);
     novo->desvioOrc.original = o.valor;
     novo->desvioOrc.desvio = desvio_despesa;
     node_desvio_orcamento *aux = lista_desvio_orcamento;
