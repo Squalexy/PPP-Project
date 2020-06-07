@@ -50,8 +50,8 @@ int main() {
                 //print_despesa(lista_despesas);
                 despesas_totais();
                 desvio_despesas();
-                escrever_despesas_totais(lista_despesas_totais, ficheiro1);
-                escrever_desvio_orcamento(lista_desvio_orcamento, ficheiro2);
+                escrever_despesas_totais(ficheiro1);
+                escrever_desvio_orcamento(ficheiro2);
                 break;
             case 3:
                 //limpar_despesas(lista_despesas);

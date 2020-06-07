@@ -5,8 +5,8 @@ int main() {
     int validade;
     char introduzir[MAXTAMANHO];
     int input = 0;
-    node_orcamento *lista_orcamentos = create_list_orcamento(); //Cria desde já uma primeira lista, antes do programa começar a funcionar
-    node_despesa *lista_despesas = create_list_despesa();
+    create_list_orcamento(); //Cria desde já uma primeira lista, antes do programa começar a funcionar
+    create_list_despesa();
 
     while (1) {
         printf("\nEscolha uma opção: \n");
@@ -52,7 +52,7 @@ int main() {
                 ler_despesas();
                 break;
             case 3:
-                input_orcamento(lista_orcamentos);
+                input_orcamento();
                 break;
             case 4:
                 input_despesas();
@@ -78,8 +78,6 @@ int main() {
             case 11:
                 limpar_despesas();
                 limpar_orcamentos();
-                free(lista_despesas);
-                free(lista_orcamentos);
                 return 0;
             default:
                 printf("Opção inválida. Repita a escolha. \n");

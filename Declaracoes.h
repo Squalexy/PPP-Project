@@ -13,13 +13,13 @@
 
 
 //0. NODES
-node_orcamento* create_list_orcamento();
-node_despesa* create_list_despesa();
-node_despesa_total* create_list_despesa_total();
-node_desvio_orcamento* create_list_desvio_orcamento();
+void create_list_orcamento();
+void create_list_despesa();
+void create_list_despesa_total();
+void create_list_desvio_orcamento();
 
 //1. ORÇAMENTO
-void input_orcamento(node_orcamento* lista_orcamentos);
+void input_orcamento();
 void inserir_orcamento(char *tipo, int valor);
 void print_orcamento();
 void atualizar_lista(char *tipo, int valor);
@@ -46,7 +46,7 @@ void limpar_despesas();
 void despesas_totais();
 void inserir_despesas_totais(node_despesa *despesa, int contagem);
 void desvio_despesas();
-void inserir_desvio_orcamento(node_desvio_orcamento* lista_desvio_orcamento, node_orcamento* lista, int desvio_despesa);
-void escrever_despesas_totais(node_despesa_total *novo, char *nome);
-void escrever_desvio_orcamento(node_desvio_orcamento* novo, char *nome2);
+void inserir_desvio_orcamento(int desvio_despesa);
+void escrever_despesas_totais(char *nome);
+void escrever_desvio_orcamento(char *nome2);
 int get_one_line(FILE * fich, char *linha, int lim);

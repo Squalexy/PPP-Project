@@ -7,19 +7,19 @@ static node_despesa *lista_despesas;
 static node_despesa_total *lista_despesas_totais;
 static node_desvio_orcamento *lista_desvio_orcamento;
 
-node_orcamento *create_list_orcamento() {
+void create_list_orcamento() {
     lista_orcamentos = calloc(sizeof(node_orcamento), 1); //Cria uma lista
 }
 
-node_despesa *create_list_despesa() {
+void create_list_despesa() {
     lista_despesas = calloc(sizeof(node_despesa), 1);
 }
 
-node_despesa_total *create_list_despesa_total() {
+void create_list_despesa_total() {
     lista_despesas_totais = calloc(sizeof(node_despesa_total), 1);
 }
 
-node_desvio_orcamento *create_list_desvio_orcamento() {
+void create_list_desvio_orcamento() {
     lista_desvio_orcamento = calloc(sizeof(node_desvio_orcamento), 1);
 }
 
@@ -305,23 +305,19 @@ void desvio_despesas() {
                    l_desp_tot->despesa.total, percentagem,
                    l_desp_tot->despesa.total - l_orc->orc.valor, l_orc->orc.valor);
             desvio_despesa = l_desp_tot->despesa.total - l_orc->orc.valor;
-            inserir_desvio_orcamento(l_desv_orc, l_orc, desvio_despesa);
+            inserir_desvio_orcamento(desvio_despesa);
         }
         l_orc = l_orc->next;
         l_desp_tot = l_desp_tot->next;
     }
 }
 
-//CONTINUE STATIC CHANGES HERE TODO
-void
-inserir_desvio_orcamento(node_desvio_orcamento *lista_desvio_orcamento, node_orcamento *lista, int desvio_despesa) {
+void inserir_desvio_orcamento(int desvio_despesa) {
+    node_orcamento *lista = lista_orcamentos;
     node_desvio_orcamento *novo = calloc(sizeof(node_desvio_orcamento), 1);
     strcpy(novo->desvioOrc.orc, lista->orc.tipo);
     novo->desvioOrc.original = lista->orc.valor;
     novo->desvioOrc.desvio = desvio_despesa;
-    //PARA VERIFICAR SE ESTÁ A ADICIONAR CORRETAMENTE
-    //printf("Orcamento inicial de %s: %d \t Orcamento final: %d \t Desvio: %d\n", novo2->desvioOrc.orc, novo2->desvioOrc.original,
-    //      novo2->desvioOrc.original + novo2->desvioOrc.desvio, novo2->desvioOrc.desvio);
     node_desvio_orcamento *aux = lista_desvio_orcamento;
     while (aux->next != NULL) aux = aux->next;
     novo->next = aux->next;
@@ -330,23 +326,25 @@ inserir_desvio_orcamento(node_desvio_orcamento *lista_desvio_orcamento, node_orc
 
 
 //6. ESCREVER FICHEIROS DE SAÍDA
-void escrever_despesas_totais(node_despesa_total *novo, char *nome) {
+void escrever_despesas_totais(char *nome) {
+    node_despesa_total *lista = lista_despesas_totais;
     FILE *fptr;
     fptr = fopen(nome, "w");
     if (fptr == NULL) {
         fprintf(stderr, "Erro a abrir ficheiro\n");
         exit(1);
     } else {
-        while (novo != NULL) {
-            if (novo->despesa.total == 0) novo = novo->next;
-            fprintf(fptr, "VALOR TOTAL DA DESPESA %s: %d\n", novo->despesa.despesa, novo->despesa.total);
-            novo = novo->next;
+        while (lista != NULL) {
+            if (lista->despesa.total == 0) lista = lista->next;
+            fprintf(fptr, "VALOR TOTAL DA DESPESA %s: %d\n", lista->despesa.despesa, lista->despesa.total);
+            lista = lista->next;
         }
     }
     fclose(fptr);
 }
 
-void escrever_desvio_orcamento(node_desvio_orcamento *novo, char *nome2) {
+void escrever_desvio_orcamento(char *nome2) {
+    node_desvio_orcamento *lista = lista_desvio_orcamento;
     int desvio_global = 0;
     FILE *fptr;
     fptr = fopen(nome2, "w");
@@ -354,14 +352,14 @@ void escrever_desvio_orcamento(node_desvio_orcamento *novo, char *nome2) {
         fprintf(stderr, "Erro a abrir ficheiro\n");
         exit(1);
     } else {
-        while (novo != NULL) {
-            if (novo->desvioOrc.original == 0) novo = novo->next;
-            int despesa_total = novo->desvioOrc.original + novo->desvioOrc.desvio;
-            int percentagem = (((despesa_total) * 100) / novo->desvioOrc.original) - 100;
+        while (lista != NULL) {
+            if (lista->desvioOrc.original == 0) lista = lista->next;
+            int despesa_total = lista->desvioOrc.original + lista->desvioOrc.desvio;
+            int percentagem = (((despesa_total) * 100) / lista->desvioOrc.original) - 100;
             fprintf(fptr, "ORCAMENTO INICIAL DE %s: %d\tORCAMENTO FINAL: %d\t\tDESVIO:%d (+%d%%)\n",
-                    novo->desvioOrc.orc, novo->desvioOrc.original, despesa_total, novo->desvioOrc.desvio, percentagem);
-            desvio_global += novo->desvioOrc.desvio;
-            novo = novo->next;
+                    lista->desvioOrc.orc, lista->desvioOrc.original, despesa_total, lista->desvioOrc.desvio, percentagem);
+            desvio_global += lista->desvioOrc.desvio;
+            lista = lista->next;
         }
     }
     fprintf(fptr, "\nDESVIO GLOBAL: %d\n", desvio_global);
