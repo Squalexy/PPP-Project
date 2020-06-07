@@ -39,7 +39,7 @@ void ler_despesas();
 void escrever_despesas();
 
 //4. LIMPEZA
-void limpar_orcamentos();
+void limpar_orcamentos(char clear_header);
 void limpar_despesas();
 
 //5. PROGRAMA 2

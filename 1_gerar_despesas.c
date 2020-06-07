@@ -77,7 +77,7 @@ int main() {
                 break;
             case 11:
                 limpar_despesas();
-                limpar_orcamentos();
+                limpar_orcamentos(1);
                 return 0;
             default:
                 printf("Opção inválida. Repita a escolha. \n");

@@ -56,7 +56,7 @@ int main() {
             case 3:
                 //limpar_despesas(lista_despesas);
                 //limpar_orcamentos(lista_orcamentos);
-                //free(lista_despesas);l
+                //free(lista_despesas);
                 //free(lista_orcamentos);
                 return 0;
             default:

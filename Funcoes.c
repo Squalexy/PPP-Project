@@ -165,7 +165,7 @@ void ler_orcamento() {
         exit(1);
     }
     node_orcamento *aux = calloc(sizeof(node_orcamento), 1);
-    limpar_orcamentos();
+    limpar_orcamentos(0);
     while (fread(aux, sizeof(node_orcamento), 1, fptr)) {
         inserir_orcamento(aux->orc.tipo, aux->orc.valor);
     }
@@ -226,7 +226,7 @@ void escrever_despesas() {
 //Funções para limpar orçamentos e listas cada vez que os ler para não duplicá-los ao fazer print
 //Pode acontecer eu ler um ficheiro, adicionar um elemento à lista, acrescentá-lo ao ficheiro e ler novamente o ficheiro
 //Como não limpei a lista, ele iria ler o ficheiro antigo (sem o elemento adicionado) e o ficheiro novo, ou seja, iria duplicar os elementos já existentes
-void limpar_orcamentos() {
+void limpar_orcamentos(char clear_header) {
     node_orcamento *lista = lista_orcamentos;
     node_orcamento *copia = lista;
     lista = lista->next;
@@ -235,6 +235,9 @@ void limpar_orcamentos() {
         node_orcamento *next = lista->next;
         free(lista);
         lista = next;
+    }
+    if(clear_header){
+        free(lista_orcamentos);
     }
 }
 
