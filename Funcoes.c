@@ -299,24 +299,21 @@ void desvio_despesas() {
     while (l_desp_tot != NULL && l_orc != NULL) {
         int desvio_despesa;
         int percentagem = (((l_desp_tot->despesa.total) * 100) / l_orc->orc.valor) - 100;
-        if ((l_desp_tot->despesa.total - l_desv_orc->desvioOrc.desvio) >
-            l_orc->orc.valor) { //ex: se despesas220-desvio20 > orc200
-            printf("Tipo: %s - Valor: %d - Desvio: %d%% (+%d) - Orçamento inicial: %d\n", l_orc->orc.tipo,
-                   l_desp_tot->despesa.total, percentagem,
-                   l_desp_tot->despesa.total - l_orc->orc.valor, l_orc->orc.valor);
+        if ((l_desp_tot->despesa.total - l_desv_orc->desvioOrc.desvio) > l_orc->orc.valor) { //ex: se despesas220-desvio20 > orc200
+            printf("Tipo: %s - Valor: %d - Desvio: %d%% (+%d) - Orçamento inicial: %d\n", l_orc->orc.tipo, l_desp_tot->despesa.total, percentagem, l_desp_tot->despesa.total - l_orc->orc.valor, l_orc->orc.valor);
             desvio_despesa = l_desp_tot->despesa.total - l_orc->orc.valor;
-            inserir_desvio_orcamento(desvio_despesa);
+            inserir_desvio_orcamento(desvio_despesa, l_orc->orc);
         }
         l_orc = l_orc->next;
         l_desp_tot = l_desp_tot->next;
     }
 }
 
-void inserir_desvio_orcamento(int desvio_despesa) {
+void inserir_desvio_orcamento(int desvio_despesa, orcamentado o) {
     node_orcamento *lista = lista_orcamentos;
     node_desvio_orcamento *novo = calloc(sizeof(node_desvio_orcamento), 1);
     strcpy(novo->desvioOrc.orc, lista->orc.tipo);
-    novo->desvioOrc.original = lista->orc.valor;
+    novo->desvioOrc.original = o.valor;
     novo->desvioOrc.desvio = desvio_despesa;
     node_desvio_orcamento *aux = lista_desvio_orcamento;
     while (aux->next != NULL) aux = aux->next;

@@ -46,7 +46,7 @@ void limpar_despesas();
 void despesas_totais();
 void inserir_despesas_totais(node_despesa *despesa, int contagem);
 void desvio_despesas();
-void inserir_desvio_orcamento(int desvio_despesa);
+void inserir_desvio_orcamento(int desvio_despesa, orcamentado o);
 void escrever_despesas_totais(char *nome);
 void escrever_desvio_orcamento(char *nome2);
 int get_one_line(FILE * fich, char *linha, int lim);
