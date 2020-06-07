@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/cygdrive/d/Francisco/Documents/Uni/FimLicenciatura/PPPAlexy/2_analisar_despesas.c" "/cygdrive/d/Francisco/Documents/Uni/FimLicenciatura/PPPAlexy/cmake-build-debug/CMakeFiles/2_ler_ficheiros.dir/2_analisar_despesas.c.o"
-  "/cygdrive/d/Francisco/Documents/Uni/FimLicenciatura/PPPAlexy/Funcoes.c" "/cygdrive/d/Francisco/Documents/Uni/FimLicenciatura/PPPAlexy/cmake-build-debug/CMakeFiles/2_ler_ficheiros.dir/Funcoes.c.o"
+  "/cygdrive/c/Users/squal/CLionProjects/PROJETO/2_analisar_despesas.c" "/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/CMakeFiles/2_ler_ficheiros.dir/2_analisar_despesas.c.o"
+  "/cygdrive/c/Users/squal/CLionProjects/PROJETO/Funcoes.c" "/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/CMakeFiles/2_ler_ficheiros.dir/Funcoes.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
