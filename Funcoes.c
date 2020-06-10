@@ -198,7 +198,7 @@ void ler_despesas() {
         exit(1);
     }
     node_despesa *aux = calloc(sizeof(node_despesa), 1);
-    limpar_despesas();
+    limpar_despesas(0);
     while (fread(aux, sizeof(node_despesa), 1, fptr)) {
         inserir_despesa(aux->orc.descricao, aux->orc.preco, aux->orc.tipo);
     }
@@ -236,12 +236,11 @@ void limpar_orcamentos(char clear_header) {
         free(lista);
         lista = next;
     }
-    if(clear_header){
-        free(lista_orcamentos);
-    }
+    if(clear_header) free(lista_orcamentos);
+
 }
 
-void limpar_despesas() {
+void limpar_despesas(char clear_header) {
     node_despesa *despesa = lista_despesas;
     node_despesa *copia = despesa;
     despesa = despesa->next;
@@ -251,15 +250,17 @@ void limpar_despesas() {
         free(despesa);
         despesa = next;
     }
+    if (clear_header) free(lista_orcamentos);
 }
 
 //Insere na lista o tipo de despesas (ex: ALIMENTAÇÃO) e o valor total das despesas
-//Compara sempre com o elemento a seguir para saber quando dar reset às despesas se o tipo for diferente (ex: ALIMENTAÇÃO e TRANSPORTES)
+//Compara sempre com o elemento a seguir para saber quando dar reset às despesas se o tipo for diferente
+//(ex: ... -> ALIMENTAÇÃO -> ALIMENTAÇÃO -> TRANSPORTES -> ...)
 void despesas_totais() {
     node_despesa *despesa = lista_despesas;
     int contagem = 0;
     if (despesa->orc.preco == 0) despesa = despesa->next;
-    while (despesa != NULL && despesa->next != NULL) {
+    while (despesa != NULL) {
         if (despesa->next == NULL) {
             contagem += despesa->orc.preco;
             printf("Despesas totais do tipo %s : %d\n", despesa->orc.tipo, contagem);

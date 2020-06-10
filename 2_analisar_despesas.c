@@ -49,9 +49,9 @@ int main() {
                 ler_orcamento();
                 //print_despesa(lista_despesas);
                 despesas_totais();
-                desvio_despesas();
-                escrever_despesas_totais(ficheiro1);
-                escrever_desvio_orcamento(ficheiro2);
+                //desvio_despesas();
+                //escrever_despesas_totais(ficheiro1);
+                //escrever_desvio_orcamento(ficheiro2);
                 break;
             case 3:
                 //limpar_despesas(lista_despesas);

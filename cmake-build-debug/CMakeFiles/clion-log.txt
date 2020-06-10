@@ -1,4 +1,4 @@
-C:\Users\Francisco\AppData\Local\JetBrains\CLion2020.1\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /cygdrive/d/Francisco/Documents/Uni/FimLicenciatura/PPPAlexy
+C:\Users\squal\AppData\Local\JetBrains\CLion2020.1\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /cygdrive/c/Users/squal/CLionProjects/PROJETO
 -- The C compiler identification is GNU 7.4.0
 -- Check for working C compiler: /usr/bin/cc
 -- Check for working C compiler: /usr/bin/cc -- works
@@ -8,4 +8,4 @@ C:\Users\Francisco\AppData\Local\JetBrains\CLion2020.1\cygwin_cmake\bin\cmake.ex
 -- Detecting C compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: /cygdrive/d/Francisco/Documents/Uni/FimLicenciatura/PPPAlexy/cmake-build-debug
+-- Build files have been written to: /cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug

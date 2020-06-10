@@ -76,7 +76,7 @@ int main() {
                 escrever_despesas();
                 break;
             case 11:
-                limpar_despesas();
+                limpar_despesas(1);
                 limpar_orcamentos(1);
                 return 0;
             default:
