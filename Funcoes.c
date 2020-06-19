@@ -1,12 +1,9 @@
 #include "Declaracoes.h"
 
-// --------------------------- LISTAS --------------------------- //
-
 static node_orcamento *lista_orcamentos;
 static node_despesa *lista_despesas;
 static node_despesa_total *lista_despesas_totais;
 static node_desvio_orcamento *lista_desvio_orcamento;
-
 
 //Cria as listas, inicializando-as a NULL
 void create_list_orcamento() {
@@ -25,9 +22,8 @@ void create_list_desvio_orcamento() {
     lista_desvio_orcamento = calloc(sizeof(node_desvio_orcamento), 1);
 }
 
-// ---------- FUNCOES --------- //
-//1. ORÇAMENTO
 
+//1. ORÇAMENTO
 //Pede ao utilizador input de um orçamento, para depois inseri-lo na lista de orçamentos.
 void input_orcamento() {
     char tipo[MAXTAMANHO];
@@ -43,7 +39,7 @@ void input_orcamento() {
     inserir_orcamento(tipo, preco);
 }
 
-//Insere o orçamento na lista de orçamentos.
+//Insere o orçamento na lista de orçamentos, por ordem alfabética de tipo de orçamento.
 //É usado em conjunção com a função input_orcamento.
 void inserir_orcamento(char *tipo, int valor) {
     node_orcamento *novo = calloc(sizeof(node_orcamento), 1);
@@ -67,19 +63,6 @@ void print_orcamento() {
     }
 }
 
-//Atualiza o valor do orçamento na lista de orçamentos.
-//É usado em conjunção com a função atualizar_orcamento.
-void atualizar_lista_orcamento(char *tipo, int valor) {
-    node_orcamento *lista = lista_orcamentos;
-    while (lista != NULL) {
-        if (strcasecmp(lista->orc.tipo, tipo) == 0) {
-            lista->orc.valor = valor;
-            break;
-        }
-        lista = lista->next;
-    }
-}
-
 //Pede ao utilizador dois inputs: o orçamento a ser atualizado e o valor que irá substituir o atual.
 //De seguida, faz essa atualização.
 void atualizar_orcamento() {
@@ -96,8 +79,21 @@ void atualizar_orcamento() {
     atualizar_lista_orcamento(tipo, preco);
 }
 
-//2. DESPESAS
+//Atualiza o valor do orçamento na lista de orçamentos.
+//É usado em conjunção com a função atualizar_orcamento.
+void atualizar_lista_orcamento(char *tipo, int valor) {
+    node_orcamento *lista = lista_orcamentos;
+    while (lista != NULL) {
+        if (strcasecmp(lista->orc.tipo, tipo) == 0) {
+            lista->orc.valor = valor;
+            break;
+        }
+        lista = lista->next;
+    }
+}
 
+
+//2. DESPESAS
 //Pede ao utilizador input de uma despesa, para depois inseri-lana lista de despesas.
 void input_despesas() {
     char descricao[MAXTAMANHO];
@@ -117,7 +113,7 @@ void input_despesas() {
     inserir_despesa(descricao, preco, tipo);
 }
 
-//Insere a despesa na lista de despesas.
+//Insere a despesa na lista de despesas, por ordem alfabética de tipo de despesa.
 //É usado em conjunção com a função input_despesas.
 void inserir_despesa(char *descricao, int preco, char *tipo) {
     node_despesa *novo = calloc(sizeof(node_despesa), 1);
@@ -144,19 +140,6 @@ void print_despesa() {
     }
 }
 
-//Atualiza o valor da despesa na lista de despesas.
-//É usado em conjunção com a função atualizar_despesas.
-void atualizar_lista_despesas(char *descricao, int preco) {
-    node_despesa *aux = lista_despesas;
-    while (aux != NULL) {
-        if (strcasecmp(aux->orc.descricao, descricao) == 0) {
-            aux->orc.preco = preco;
-            break;
-        }
-        aux = aux->next;
-    }
-}
-
 //Pede ao utilizador dois inputs: a despesa a ser atualizada e o valor que irá substituir o atual.
 //De seguida, faz essa atualização.
 void atualizar_despesas() {
@@ -173,15 +156,28 @@ void atualizar_despesas() {
     atualizar_lista_despesas(descricao, preco);
 }
 
-//3. FICHEIROS
+//Atualiza o valor da despesa na lista de despesas.
+//É usado em conjunção com a função atualizar_despesas.
+void atualizar_lista_despesas(char *descricao, int preco) {
+    node_despesa *aux = lista_despesas;
+    while (aux != NULL) {
+        if (strcasecmp(aux->orc.descricao, descricao) == 0) {
+            aux->orc.preco = preco;
+            break;
+        }
+        aux = aux->next;
+    }
+}
 
+
+//3. FICHEIROS
 //Pede o nome de um ficheiro de orçamento existente.
 //Abre e lê o ficheiro, inserindo o seu conteúdo numa lista de orçamentos.
 void ler_orcamento() {
     char nome_fich[MAXTAMANHO];
     FILE *fptr = NULL;
     while (fptr == NULL) {
-        printf("Insira o nome do FICHEIRO de ORÇAMENTOS a ser ABERTO: ");
+        printf("Insira o nome do FICHEIRO BINÁRIO de ORÇAMENTOS a ser ABERTO: ");
         if (get_one_line(stdin, nome_fich, MAXTAMANHO) == EOF) return;
         fptr = fopen(nome_fich, "rb");
         if (fptr == NULL) fprintf(stderr, "Ficheiro não existe. \n");
@@ -202,7 +198,7 @@ void escrever_orcamento() {
     node_orcamento *aux = lista_orcamentos;
     char nome_fich[MAXTAMANHO];
     while (fptr == NULL) {
-        printf("Insira o nome do FICHEIRO de ORÇAMENTOS a ser ESCRITO: ");
+        printf("Insira o nome do FICHEIRO BINÁRIO de ORÇAMENTOS a ser ESCRITO: ");
         if (get_one_line(stdin, nome_fich, MAXTAMANHO) == EOF) return;
         fptr = fopen(nome_fich, "wb");
         if (fptr == NULL) fprintf(stderr, "Erro no ficheiro. \n");
@@ -221,7 +217,7 @@ void ler_despesas() {
     char nome_fich[MAXTAMANHO];
     FILE *fptr = NULL;
     while (fptr == NULL) {
-        printf("Insira o nome do FICHEIRO de DESPESAS a ser ABERTO: \n");
+        printf("Insira o nome do FICHEIRO BINÁRIO de DESPESAS a ser ABERTO: \n");
         if (get_one_line(stdin, nome_fich, MAXTAMANHO) == EOF) return;
         fptr = fopen(nome_fich, "rb");
         if (fptr == NULL) fprintf(stderr, "Ficheiro não existe. \n");
@@ -242,7 +238,7 @@ void escrever_despesas() {
     node_despesa *aux = lista_despesas;
     char nome_fich[MAXTAMANHO];
     while (fptr == NULL) {
-        printf("Insira o nome do FICHEIRO de DESPESAS a ser ESCRITO: \n");
+        printf("Insira o nome do FICHEIRO BINÁRIO de DESPESAS a ser ESCRITO: \n");
         if (get_one_line(stdin, nome_fich, MAXTAMANHO) == EOF) return;
         fptr = fopen(nome_fich, "wb");
         if (fptr == NULL) fprintf(stderr, "Erro no ficheiro. \n");
@@ -255,35 +251,8 @@ void escrever_despesas() {
     fclose(fptr);
 }
 
-//Limpa a lista de orçamentos (liberta a memória alocada).
-void limpar_orcamentos(char clear_header) {
-    node_orcamento *lista = lista_orcamentos;
-    node_orcamento *copia = lista;
-    lista = lista->next;
-    copia->next = NULL;
-    while (lista != NULL) {
-        node_orcamento *next = lista->next;
-        free(lista);
-        lista = next;
-    }
-    if (clear_header) free(lista_orcamentos);
 
-}
-
-//Limpa a lista de despesas (liberta a memória alocada).
-void limpar_despesas(char clear_header) {
-    node_despesa *despesa = lista_despesas;
-    node_despesa *copia = despesa;
-    despesa = despesa->next;
-    copia->next = NULL;
-    while (despesa != NULL) {
-        node_despesa *next = despesa->next;
-        free(despesa);
-        despesa = next;
-    }
-    if (clear_header) free(lista_orcamentos);
-}
-
+//4. DESPESAS TOTAIS E DESVIO DE ORÇAMENTO
 //Insere na lista de despesas totais os nomes dos orçamentos e a soma total das despesas desses tipos de orçamentos.
 //Compara sempre com o elemento a seguir para saber quando dar reset ao valor se o tipo de orçamento for diferente.
 //(ex: ... -> ALIMENTAÇÃO -> ALIMENTAÇÃO -> TRANSPORTES (reset valor a 0) -> ...).
@@ -294,14 +263,12 @@ void despesas_totais() {
     while (despesa != NULL) {
         if (despesa->next == NULL) {
             contagem += despesa->orc.preco;
-            printf("Despesas totais do tipo %s : %d\n", despesa->orc.tipo, contagem);
             inserir_despesas_totais(despesa, contagem);
         } else if (strcasecmp(despesa->orc.tipo, despesa->next->orc.tipo) ==
                    0) { //se o próximo elemento for o mesmo tipo
             contagem += despesa->orc.preco;
-        } else {//se o próximo elemento for um tipo diferente
+        } else { //se o próximo elemento for um tipo diferente
             contagem += despesa->orc.preco;
-            printf("Despesas totais do tipo %s : %d\n", despesa->orc.tipo, contagem);
             inserir_despesas_totais(despesa, contagem);
             contagem = 0;
         }
@@ -320,6 +287,16 @@ void inserir_despesas_totais(node_despesa *despesa, int contagem) {
     aux->next = novo;
 };
 
+//Faz print de todas as despesas totais da lista de despesas totais.
+void print_despesas_totais() {
+    node_despesa_total *despesa_total = lista_despesas_totais;
+    if (despesa_total->despesa.total == 0) despesa_total = despesa_total->next;
+    while (despesa_total != NULL) {
+        printf("Despesas totais do tipo %s : %d\n", despesa_total->despesa.despesa,
+               despesa_total->despesa.total);
+        despesa_total = despesa_total->next;
+    }
+}
 
 //Guarda numa lista as despesas que têm um valor superior a 10% em relação ao orçamentado inicialmente.
 //Ex: despesa 220, orçamento incial 150; desvio de 70 euros (46%);
@@ -329,16 +306,10 @@ void desvio_despesas() {
     node_desvio_orcamento *l_desv_orc = lista_desvio_orcamento;
     if (l_orc->orc.valor == 0) l_orc = l_orc->next;
     if (l_desp_tot->despesa.total == 0) l_desp_tot = l_desp_tot->next;
-    printf("Os seguintes orçamentos sofreram um l_desv_orc superior a 10%%:\n");
-
     while (l_desp_tot != NULL && l_orc != NULL) {
         int desvio_despesa;
-        int percentagem = (((l_desp_tot->despesa.total) * 100) / l_orc->orc.valor) - 100;
-        if ((l_desp_tot->despesa.total - l_desv_orc->desvioOrc.desvio) > l_orc->orc.valor) {
-            printf("Tipo: %s - Valor: %d - Desvio: %d%% (+%d) - Orçamento inicial: %d\n", l_orc->orc.tipo,
-                   l_desp_tot->despesa.total, percentagem,
-                   l_desp_tot->despesa.total - l_orc->orc.valor, l_orc->orc.valor);
-            desvio_despesa = l_desp_tot->despesa.total - l_orc->orc.valor;
+        desvio_despesa = l_desp_tot->despesa.total - l_orc->orc.valor;
+        if (((desvio_despesa * 100) / l_orc->orc.valor) > 10) {
             inserir_desvio_orcamento(desvio_despesa, l_orc->orc);
         }
         l_orc = l_orc->next;
@@ -358,8 +329,20 @@ void inserir_desvio_orcamento(int desvio_despesa, orcamentado o) {
     aux->next = novo;
 }
 
+//Faz print de todos os desvios de orçamento da lista de desvio orcamento.
+void print_desvio_orcamento() {
+    node_desvio_orcamento *desvio = lista_desvio_orcamento;
+    if (desvio->desvioOrc.desvio == 0) desvio = desvio->next;
+    while (desvio != NULL) {
+        int percentagem = ((desvio->desvioOrc.desvio) * 100) / desvio->desvioOrc.original;
+        printf("Tipo: %s - Valor: %d - Desvio: %d%% (+%d) - Orçamento inicial: %d\n", desvio->desvioOrc.orc,
+               desvio->desvioOrc.original + desvio->desvioOrc.desvio, percentagem, desvio->desvioOrc.desvio,
+               desvio->desvioOrc.original);
+        desvio = desvio->next;
+    }
+}
 
-//4. ESCREVER FICHEIROS DE SAÍDA
+//5. FICHEIROS DE SAÍDA
 //Pega no conteúdo da lista com as despesas totais de cada orçamento e escreve-o num ficheiro.
 void escrever_despesas_totais(char *nome) {
     node_despesa_total *lista = lista_despesas_totais;
@@ -392,7 +375,7 @@ void escrever_desvio_orcamento(char *nome2) {
             if (lista->desvioOrc.original == 0) lista = lista->next;
             int despesa_total = lista->desvioOrc.original + lista->desvioOrc.desvio;
             int percentagem = (((despesa_total) * 100) / lista->desvioOrc.original) - 100;
-            fprintf(fptr, "ORCAMENTO INICIAL DE %s: %d\tORCAMENTO FINAL: %d\t\tDESVIO:%d (+%d%%)\n",
+            fprintf(fptr, "%s\tORCAMENTO INICIAL: %d\tORCAMENTO FINAL: %d\tDESVIO:%d (+%d%%)\n",
                     lista->desvioOrc.orc, lista->desvioOrc.original, despesa_total, lista->desvioOrc.desvio,
                     percentagem);
             desvio_global += lista->desvioOrc.desvio;
@@ -403,6 +386,65 @@ void escrever_desvio_orcamento(char *nome2) {
     fclose(fptr);
 }
 
+
+//6. LIMPEZA DE LISTAS
+//Limpa a lista de orçamentos (liberta a memória alocada).
+void limpar_orcamentos(char clear_header) {
+    node_orcamento *lista = lista_orcamentos;
+    node_orcamento *copia = lista;
+    lista = lista->next;
+    copia->next = NULL;
+    while (lista != NULL) {
+        node_orcamento *next = lista->next;
+        free(lista);
+        lista = next;
+    }
+    if (clear_header) free(lista_orcamentos);
+
+}
+
+//Limpa a lista de despesas (liberta a memória alocada).
+void limpar_despesas(char clear_header) {
+    node_despesa *despesa = lista_despesas;
+    node_despesa *copia = despesa;
+    despesa = despesa->next;
+    copia->next = NULL;
+    while (despesa != NULL) {
+        node_despesa *next = despesa->next;
+        free(despesa);
+        despesa = next;
+    }
+    if (clear_header) free(lista_orcamentos);
+}
+
+//Limpa a lista de despesas totais (liberta a memória alocada).
+void limpar_despesas_totais(char clear_header) {
+    node_despesa_total *despesa_total = lista_despesas_totais;
+    node_despesa_total *copia = despesa_total;
+    despesa_total = despesa_total->next;
+    copia->next = NULL;
+    while (despesa_total != NULL) {
+        node_despesa_total *next = despesa_total->next;
+        free(despesa_total);
+        despesa_total = next;
+    }
+}
+
+//Limpa a lista de desvio de orçamento (liberta a memória alocada).
+void limpar_desvio_orcamento(char clear_header) {
+    node_desvio_orcamento *desvio_despesas = lista_desvio_orcamento;
+    node_desvio_orcamento *copia = desvio_despesas;
+    desvio_despesas = desvio_despesas->next;
+    copia->next = NULL;
+    while (desvio_despesas != NULL) {
+        node_desvio_orcamento *next = desvio_despesas->next;
+        free(desvio_despesas);
+        desvio_despesas = next;
+    }
+}
+
+
+//7. FICHEIROS NO GERAL
 //Função para obter a próxima linha do input.
 int get_one_line(FILE *fich, char *linha, int lim) {
     int c, i;

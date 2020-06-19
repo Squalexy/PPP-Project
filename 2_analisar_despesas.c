@@ -19,46 +19,63 @@ int main() {
     get_one_line(config, ficheiro2, MAXTAMANHO);
 
     while (1) {
-        printf("Escolha o ficheiro que pretende abrir:\n");
-        printf("1 - Orçamento\n");
-        printf("2 - Despesas\n");
-        printf("3 - Sair\n");
+        printf("Escolha uma opção: \n");
+        printf("1 - Calcular despesas totais\n");
+        printf("2 - Calcular desvio de orçamento\n");
+        printf("3 - Print despesas totais\n");
+        printf("4 - Print desvio de orçamento\n");
+        printf("5 - Guardar despesas totais num ficheiro\n");
+        printf("6 - Guardar desvio de orçamento num ficheiro\n");
+        printf("7 - Sair\n");
         while (fgets(introduzir, MAXTAMANHO, stdin)) {
             validade = 1;
             for (int i = 0; i < strlen(introduzir) - 1; i++) {
-                if(introduzir[i] < '0' || introduzir[i] > '9') {
+                if (introduzir[i] < '0' || introduzir[i] > '9') {
                     validade = 0;
                     break;
                 }
             }
             if (validade == 1) break;
             printf("Opção inválida. Repita a escolha. \n");
-            printf("Escolha o ficheiro que pretende abrir:\n");
-            printf("1 - Orçamento\n");
-            printf("2 - Despesas\n");
-            printf("3 - Sair\n");
+            printf("Escolha uma opção: \n");
+            printf("1 - Calcular despesas totais\n");
+            printf("2 - Calcular desvio de orçamento\n");
+            printf("3 - Print despesas totais\n");
+            printf("4 - Print desvio de orçamento\n");
+            printf("5 - Guardar despesas totais num ficheiro\n");
+            printf("6 - Guardar desvio de orçamento num ficheiro\n");
+            printf("7 - Sair\n");
         }
         input = (int) strtol(introduzir, NULL, 10);
         switch (input) {
             case 1:
-                ler_orcamento();
-                print_orcamento();
+                ler_despesas();
+                despesas_totais();
                 break;
             case 2:
-                ler_despesas();
                 ler_orcamento();
-                //print_despesa(lista_despesas);
-                despesas_totais();
                 desvio_despesas();
-                escrever_despesas_totais(ficheiro1);
-                escrever_desvio_orcamento(ficheiro2);
                 break;
             case 3:
-                //limpar_despesas(lista_despesas);
-                //limpar_orcamentos(lista_orcamentos);
-                //free(lista_despesas);
-                //free(lista_orcamentos);
+                print_despesas_totais();
+                break;
+            case 4:
+                printf("Os seguintes orçamentos sofreram um l_desv_orc superior a 10%%:\n");
+                print_desvio_orcamento();
+                break;
+            case 5:
+                escrever_despesas_totais(ficheiro1);
+                break;
+            case 6:
+                escrever_desvio_orcamento(ficheiro2);
+                break;
+            case 7:
+                limpar_orcamentos(1);
+                limpar_despesas(1);
+                limpar_despesas_totais(1);
+                limpar_desvio_orcamento(1);
                 return 0;
+
             default:
                 printf("Opção inválida. Repita a escolha. \n");
         }
