@@ -5,7 +5,7 @@ int main() {
     int validade;
     char introduzir[MAXTAMANHO];
     int input = 0;
-    create_list_orcamento(); //Cria desde já uma primeira lista, antes do programa começar a funcionar
+    create_list_orcamento();
     create_list_despesa();
 
     while (1) {

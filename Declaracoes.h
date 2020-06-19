@@ -22,7 +22,7 @@ void create_list_desvio_orcamento();
 void input_orcamento();
 void inserir_orcamento(char *tipo, int valor);
 void print_orcamento();
-void atualizar_lista(char *tipo, int valor);
+void atualizar_lista_orcamento(char *tipo, int valor);
 void atualizar_orcamento();
 
 //2. DESPESAS
