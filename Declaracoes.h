@@ -50,15 +50,15 @@ void desvio_despesas();
 void inserir_desvio_orcamento(int desvio_despesa, orcamentado o);
 void print_desvio_orcamento();
 
-//5. FICHEIROS DE SAÍDA
+//6. FICHEIROS DE SAÍDA
 void escrever_despesas_totais(char *nome);
 void escrever_desvio_orcamento(char *nome2);
 
-//6. LIMPEZA DE LISTAS
+//7. LIMPEZA DE LISTAS
 void limpar_orcamentos(char clear_header);
 void limpar_despesas(char clear_header);
 void limpar_despesas_totais(char clear_header);
 void limpar_desvio_orcamento(char clear_header);
 
-//7. FICHEIROS NO GERAL
+//8. FICHEIROS NO GERAL
 int get_one_line(FILE * fich, char *linha, int lim);

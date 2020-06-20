@@ -53,8 +53,8 @@ CMAKE_BINARY_DIR = /cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-deb
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/1_gerar_ficheiros.dir/all
-all: CMakeFiles/2_ler_ficheiros.dir/all
+all: CMakeFiles/1_gerar_despesas.dir/all
+all: CMakeFiles/2_analisar_despesas.dir/all
 
 .PHONY : all
 
@@ -64,64 +64,64 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/1_gerar_ficheiros.dir/clean
-clean: CMakeFiles/2_ler_ficheiros.dir/clean
+clean: CMakeFiles/1_gerar_despesas.dir/clean
+clean: CMakeFiles/2_analisar_despesas.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/1_gerar_ficheiros.dir
+# Target rules for target CMakeFiles/1_gerar_despesas.dir
 
 # All Build rule for target.
-CMakeFiles/1_gerar_ficheiros.dir/all:
-	$(MAKE) -f CMakeFiles/1_gerar_ficheiros.dir/build.make CMakeFiles/1_gerar_ficheiros.dir/depend
-	$(MAKE) -f CMakeFiles/1_gerar_ficheiros.dir/build.make CMakeFiles/1_gerar_ficheiros.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target 1_gerar_ficheiros"
-.PHONY : CMakeFiles/1_gerar_ficheiros.dir/all
+CMakeFiles/1_gerar_despesas.dir/all:
+	$(MAKE) -f CMakeFiles/1_gerar_despesas.dir/build.make CMakeFiles/1_gerar_despesas.dir/depend
+	$(MAKE) -f CMakeFiles/1_gerar_despesas.dir/build.make CMakeFiles/1_gerar_despesas.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target 1_gerar_despesas"
+.PHONY : CMakeFiles/1_gerar_despesas.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/1_gerar_ficheiros.dir/rule: cmake_check_build_system
+CMakeFiles/1_gerar_despesas.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/1_gerar_ficheiros.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/1_gerar_despesas.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/1_gerar_ficheiros.dir/rule
+.PHONY : CMakeFiles/1_gerar_despesas.dir/rule
 
 # Convenience name for target.
-1_gerar_ficheiros: CMakeFiles/1_gerar_ficheiros.dir/rule
+1_gerar_despesas: CMakeFiles/1_gerar_despesas.dir/rule
 
-.PHONY : 1_gerar_ficheiros
+.PHONY : 1_gerar_despesas
 
 # clean rule for target.
-CMakeFiles/1_gerar_ficheiros.dir/clean:
-	$(MAKE) -f CMakeFiles/1_gerar_ficheiros.dir/build.make CMakeFiles/1_gerar_ficheiros.dir/clean
-.PHONY : CMakeFiles/1_gerar_ficheiros.dir/clean
+CMakeFiles/1_gerar_despesas.dir/clean:
+	$(MAKE) -f CMakeFiles/1_gerar_despesas.dir/build.make CMakeFiles/1_gerar_despesas.dir/clean
+.PHONY : CMakeFiles/1_gerar_despesas.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/2_ler_ficheiros.dir
+# Target rules for target CMakeFiles/2_analisar_despesas.dir
 
 # All Build rule for target.
-CMakeFiles/2_ler_ficheiros.dir/all:
-	$(MAKE) -f CMakeFiles/2_ler_ficheiros.dir/build.make CMakeFiles/2_ler_ficheiros.dir/depend
-	$(MAKE) -f CMakeFiles/2_ler_ficheiros.dir/build.make CMakeFiles/2_ler_ficheiros.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/CMakeFiles --progress-num=4,5,6 "Built target 2_ler_ficheiros"
-.PHONY : CMakeFiles/2_ler_ficheiros.dir/all
+CMakeFiles/2_analisar_despesas.dir/all:
+	$(MAKE) -f CMakeFiles/2_analisar_despesas.dir/build.make CMakeFiles/2_analisar_despesas.dir/depend
+	$(MAKE) -f CMakeFiles/2_analisar_despesas.dir/build.make CMakeFiles/2_analisar_despesas.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/CMakeFiles --progress-num=4,5,6 "Built target 2_analisar_despesas"
+.PHONY : CMakeFiles/2_analisar_despesas.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/2_ler_ficheiros.dir/rule: cmake_check_build_system
+CMakeFiles/2_analisar_despesas.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/2_ler_ficheiros.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/2_analisar_despesas.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/2_ler_ficheiros.dir/rule
+.PHONY : CMakeFiles/2_analisar_despesas.dir/rule
 
 # Convenience name for target.
-2_ler_ficheiros: CMakeFiles/2_ler_ficheiros.dir/rule
+2_analisar_despesas: CMakeFiles/2_analisar_despesas.dir/rule
 
-.PHONY : 2_ler_ficheiros
+.PHONY : 2_analisar_despesas
 
 # clean rule for target.
-CMakeFiles/2_ler_ficheiros.dir/clean:
-	$(MAKE) -f CMakeFiles/2_ler_ficheiros.dir/build.make CMakeFiles/2_ler_ficheiros.dir/clean
-.PHONY : CMakeFiles/2_ler_ficheiros.dir/clean
+CMakeFiles/2_analisar_despesas.dir/clean:
+	$(MAKE) -f CMakeFiles/2_analisar_despesas.dir/build.make CMakeFiles/2_analisar_despesas.dir/clean
+.PHONY : CMakeFiles/2_analisar_despesas.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

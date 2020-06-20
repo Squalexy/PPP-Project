@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-deb
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/cygdrive/c/Users/squal/AppData/Local/JetBrains/CLion2020.1/cygwin_cmake/bin/cmake.exe -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,6 +66,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/cygdrive/c/Users/squal/AppData/Local/JetBrains/CLion2020.1/cygwin_cmake/bin/cmake.exe -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,30 +111,30 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named 1_gerar_ficheiros
+# Target rules for targets named 1_gerar_despesas
 
 # Build rule for target.
-1_gerar_ficheiros: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 1_gerar_ficheiros
-.PHONY : 1_gerar_ficheiros
+1_gerar_despesas: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 1_gerar_despesas
+.PHONY : 1_gerar_despesas
 
 # fast build rule for target.
-1_gerar_ficheiros/fast:
-	$(MAKE) -f CMakeFiles/1_gerar_ficheiros.dir/build.make CMakeFiles/1_gerar_ficheiros.dir/build
-.PHONY : 1_gerar_ficheiros/fast
+1_gerar_despesas/fast:
+	$(MAKE) -f CMakeFiles/1_gerar_despesas.dir/build.make CMakeFiles/1_gerar_despesas.dir/build
+.PHONY : 1_gerar_despesas/fast
 
 #=============================================================================
-# Target rules for targets named 2_ler_ficheiros
+# Target rules for targets named 2_analisar_despesas
 
 # Build rule for target.
-2_ler_ficheiros: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 2_ler_ficheiros
-.PHONY : 2_ler_ficheiros
+2_analisar_despesas: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 2_analisar_despesas
+.PHONY : 2_analisar_despesas
 
 # fast build rule for target.
-2_ler_ficheiros/fast:
-	$(MAKE) -f CMakeFiles/2_ler_ficheiros.dir/build.make CMakeFiles/2_ler_ficheiros.dir/build
-.PHONY : 2_ler_ficheiros/fast
+2_analisar_despesas/fast:
+	$(MAKE) -f CMakeFiles/2_analisar_despesas.dir/build.make CMakeFiles/2_analisar_despesas.dir/build
+.PHONY : 2_analisar_despesas/fast
 
 1_gerar_despesas.o: 1_gerar_despesas.c.o
 
@@ -142,7 +142,7 @@ depend:
 
 # target to build an object file
 1_gerar_despesas.c.o:
-	$(MAKE) -f CMakeFiles/1_gerar_ficheiros.dir/build.make CMakeFiles/1_gerar_ficheiros.dir/1_gerar_despesas.c.o
+	$(MAKE) -f CMakeFiles/1_gerar_despesas.dir/build.make CMakeFiles/1_gerar_despesas.dir/1_gerar_despesas.c.o
 .PHONY : 1_gerar_despesas.c.o
 
 1_gerar_despesas.i: 1_gerar_despesas.c.i
@@ -151,7 +151,7 @@ depend:
 
 # target to preprocess a source file
 1_gerar_despesas.c.i:
-	$(MAKE) -f CMakeFiles/1_gerar_ficheiros.dir/build.make CMakeFiles/1_gerar_ficheiros.dir/1_gerar_despesas.c.i
+	$(MAKE) -f CMakeFiles/1_gerar_despesas.dir/build.make CMakeFiles/1_gerar_despesas.dir/1_gerar_despesas.c.i
 .PHONY : 1_gerar_despesas.c.i
 
 1_gerar_despesas.s: 1_gerar_despesas.c.s
@@ -160,7 +160,7 @@ depend:
 
 # target to generate assembly for a file
 1_gerar_despesas.c.s:
-	$(MAKE) -f CMakeFiles/1_gerar_ficheiros.dir/build.make CMakeFiles/1_gerar_ficheiros.dir/1_gerar_despesas.c.s
+	$(MAKE) -f CMakeFiles/1_gerar_despesas.dir/build.make CMakeFiles/1_gerar_despesas.dir/1_gerar_despesas.c.s
 .PHONY : 1_gerar_despesas.c.s
 
 2_analisar_despesas.o: 2_analisar_despesas.c.o
@@ -169,7 +169,7 @@ depend:
 
 # target to build an object file
 2_analisar_despesas.c.o:
-	$(MAKE) -f CMakeFiles/2_ler_ficheiros.dir/build.make CMakeFiles/2_ler_ficheiros.dir/2_analisar_despesas.c.o
+	$(MAKE) -f CMakeFiles/2_analisar_despesas.dir/build.make CMakeFiles/2_analisar_despesas.dir/2_analisar_despesas.c.o
 .PHONY : 2_analisar_despesas.c.o
 
 2_analisar_despesas.i: 2_analisar_despesas.c.i
@@ -178,7 +178,7 @@ depend:
 
 # target to preprocess a source file
 2_analisar_despesas.c.i:
-	$(MAKE) -f CMakeFiles/2_ler_ficheiros.dir/build.make CMakeFiles/2_ler_ficheiros.dir/2_analisar_despesas.c.i
+	$(MAKE) -f CMakeFiles/2_analisar_despesas.dir/build.make CMakeFiles/2_analisar_despesas.dir/2_analisar_despesas.c.i
 .PHONY : 2_analisar_despesas.c.i
 
 2_analisar_despesas.s: 2_analisar_despesas.c.s
@@ -187,7 +187,7 @@ depend:
 
 # target to generate assembly for a file
 2_analisar_despesas.c.s:
-	$(MAKE) -f CMakeFiles/2_ler_ficheiros.dir/build.make CMakeFiles/2_ler_ficheiros.dir/2_analisar_despesas.c.s
+	$(MAKE) -f CMakeFiles/2_analisar_despesas.dir/build.make CMakeFiles/2_analisar_despesas.dir/2_analisar_despesas.c.s
 .PHONY : 2_analisar_despesas.c.s
 
 Funcoes.o: Funcoes.c.o
@@ -196,8 +196,8 @@ Funcoes.o: Funcoes.c.o
 
 # target to build an object file
 Funcoes.c.o:
-	$(MAKE) -f CMakeFiles/1_gerar_ficheiros.dir/build.make CMakeFiles/1_gerar_ficheiros.dir/Funcoes.c.o
-	$(MAKE) -f CMakeFiles/2_ler_ficheiros.dir/build.make CMakeFiles/2_ler_ficheiros.dir/Funcoes.c.o
+	$(MAKE) -f CMakeFiles/1_gerar_despesas.dir/build.make CMakeFiles/1_gerar_despesas.dir/Funcoes.c.o
+	$(MAKE) -f CMakeFiles/2_analisar_despesas.dir/build.make CMakeFiles/2_analisar_despesas.dir/Funcoes.c.o
 .PHONY : Funcoes.c.o
 
 Funcoes.i: Funcoes.c.i
@@ -206,8 +206,8 @@ Funcoes.i: Funcoes.c.i
 
 # target to preprocess a source file
 Funcoes.c.i:
-	$(MAKE) -f CMakeFiles/1_gerar_ficheiros.dir/build.make CMakeFiles/1_gerar_ficheiros.dir/Funcoes.c.i
-	$(MAKE) -f CMakeFiles/2_ler_ficheiros.dir/build.make CMakeFiles/2_ler_ficheiros.dir/Funcoes.c.i
+	$(MAKE) -f CMakeFiles/1_gerar_despesas.dir/build.make CMakeFiles/1_gerar_despesas.dir/Funcoes.c.i
+	$(MAKE) -f CMakeFiles/2_analisar_despesas.dir/build.make CMakeFiles/2_analisar_despesas.dir/Funcoes.c.i
 .PHONY : Funcoes.c.i
 
 Funcoes.s: Funcoes.c.s
@@ -216,8 +216,8 @@ Funcoes.s: Funcoes.c.s
 
 # target to generate assembly for a file
 Funcoes.c.s:
-	$(MAKE) -f CMakeFiles/1_gerar_ficheiros.dir/build.make CMakeFiles/1_gerar_ficheiros.dir/Funcoes.c.s
-	$(MAKE) -f CMakeFiles/2_ler_ficheiros.dir/build.make CMakeFiles/2_ler_ficheiros.dir/Funcoes.c.s
+	$(MAKE) -f CMakeFiles/1_gerar_despesas.dir/build.make CMakeFiles/1_gerar_despesas.dir/Funcoes.c.s
+	$(MAKE) -f CMakeFiles/2_analisar_despesas.dir/build.make CMakeFiles/2_analisar_despesas.dir/Funcoes.c.s
 .PHONY : Funcoes.c.s
 
 # Help Target
@@ -226,10 +226,10 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
-	@echo "... 1_gerar_ficheiros"
 	@echo "... rebuild_cache"
-	@echo "... 2_ler_ficheiros"
+	@echo "... edit_cache"
+	@echo "... 1_gerar_despesas"
+	@echo "... 2_analisar_despesas"
 	@echo "... 1_gerar_despesas.o"
 	@echo "... 1_gerar_despesas.i"
 	@echo "... 1_gerar_despesas.s"

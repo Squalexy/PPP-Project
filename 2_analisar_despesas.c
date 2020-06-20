@@ -1,3 +1,18 @@
+//PROGRAMA 2 - "2_analisar_despesas.c"
+
+//O objetivo é analisar os ficheiros binários criados no programa 1 (dados de entrada) e gerar duas listas:
+//1 - Gerar uma lista das despesas totais para cada orçamento;
+//2 - Gerar uma lista de orçamentos em que o desvio em relação ao orçamentado foi superior a 10%;
+
+//Uma vez criadas essas duas listas (dados de saída), o utilizador guarda cada lista num ficheiro txt, que serão
+//escritos no ficheiro de saída config.txt.
+
+//O utilizador tem liberdade na escolha dos ficheiros para calcular as despesas totais e o desvio de orçamento, a partir
+//do momento em que, quando lhe seja pedido por input, escolha os ficheiros binários de orçamento e de despesas adequados.
+//O utilizador não pode abrir um ficheiro de despesas e de orçamento que não estejam relacionados, uma vez que estes dois
+//ficheiros têm que estar interligados entre si para poder relacionar as despesas ao orçamento que lhes dizem respeito.
+//Neste caso, o programa não iria funcionar de forma eficiente.
+
 #include "Declaracoes.h"
 
 int main() {

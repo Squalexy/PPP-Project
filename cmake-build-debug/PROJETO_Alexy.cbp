@@ -17,52 +17,6 @@
 					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="1_gerar_ficheiros">
-				<Option output="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/1_gerar_ficheiros.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 1_gerar_ficheiros"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="1_gerar_ficheiros/fast">
-				<Option output="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/1_gerar_ficheiros.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 1_gerar_ficheiros/fast"/>
-					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="rebuild_cache">
 				<Option working_dir="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug"/>
 				<Option type="4"/>
@@ -73,26 +27,18 @@
 					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="2_ler_ficheiros">
-				<Option output="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/2_ler_ficheiros.exe" prefix_auto="0" extension_auto="0"/>
+			<Target title="edit_cache">
 				<Option working_dir="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
-					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
-				</Compiler>
+				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 2_ler_ficheiros"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
 					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="2_ler_ficheiros/fast">
-				<Option output="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/2_ler_ficheiros.exe" prefix_auto="0" extension_auto="0"/>
+			<Target title="1_gerar_despesas">
+				<Option output="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/1_gerar_despesas.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -103,7 +49,61 @@
 					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 2_ler_ficheiros/fast"/>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 1_gerar_despesas"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="1_gerar_despesas/fast">
+				<Option output="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/1_gerar_despesas.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 1_gerar_despesas/fast"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="2_analisar_despesas">
+				<Option output="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/2_analisar_despesas.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 2_analisar_despesas"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="2_analisar_despesas/fast">
+				<Option output="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/2_analisar_despesas.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 2_analisar_despesas/fast"/>
 					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/squal/CLionProjects/PROJETO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -111,22 +111,22 @@
 			</Target>
 		</Build>
 		<Unit filename="/cygdrive/c/Users/squal/CLionProjects/PROJETO/1_gerar_despesas.c">
-			<Option target="1_gerar_ficheiros"/>
+			<Option target="1_gerar_despesas"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Users/squal/CLionProjects/PROJETO/2_analisar_despesas.c">
-			<Option target="2_ler_ficheiros"/>
+			<Option target="2_analisar_despesas"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Users/squal/CLionProjects/PROJETO/Declaracoes.h">
-			<Option target="1_gerar_ficheiros"/>
-			<Option target="2_ler_ficheiros"/>
+			<Option target="1_gerar_despesas"/>
+			<Option target="2_analisar_despesas"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Users/squal/CLionProjects/PROJETO/Estruturas.h">
-			<Option target="1_gerar_ficheiros"/>
-			<Option target="2_ler_ficheiros"/>
+			<Option target="1_gerar_despesas"/>
+			<Option target="2_analisar_despesas"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Users/squal/CLionProjects/PROJETO/Funcoes.c">
-			<Option target="1_gerar_ficheiros"/>
-			<Option target="2_ler_ficheiros"/>
+			<Option target="1_gerar_despesas"/>
+			<Option target="2_analisar_despesas"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Users/squal/CLionProjects/PROJETO/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

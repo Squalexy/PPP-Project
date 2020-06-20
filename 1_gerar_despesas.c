@@ -1,3 +1,32 @@
+//PROGRAMA 1 - "1_gerar_despesas.c"
+
+//O objetivo é gerar os 2 dados de entrada para serem usados no programa principal (programa 2):
+//uma lista de orçamentos e uma lista de despesas.
+
+//As listas são listas ligadas simples, baseadas em gestão dinâmica de memória.
+//As listas são inicializadas a NULL através do uso de calloc (escolhido por ser mais prático para este projeto).
+
+//Através de um menu de inputs, o utilizador escolhe a opcão que pretende para gerar ou alterar os dados de entrada.
+//O utilizador pode escolher abrir um ficheiro binário já existente, criar um novo ficheiro binário de raíz, acrescentar elementos,
+//retirar elementos, atualizar valores, entre outras coisas indicadas no menu de inputs.
+
+//Uma vez que o utilizador criou os ficheiros binários (dados de entrada), ele prossegue para executar o programa 2.
+
+//São usados 2 headers para o programa 1 e programa 2:
+//"Declaracoes.h", onde são declaradas as funções, organizadas pelos seus respetivos grupos (para melhor visualização);
+//"Estruturas.h", onde são criadas as estruturas e listas;
+
+//Um dos problemas que se podem apresentar é o utilizador introduzir orçamentos ou despesas com valores que não sejam
+//de tipo inteiro ou introduzir nomes que não sejam de tipo string. Nesse caso, o programa não irá comportar-se da forma
+//inesperada.
+
+//Caso o utilizador escolha uma opção sem ter uma lista válida para a efetuar, o programa avisa o utilizador através de
+//um erro e redireciona-o para o menu de inputs. No caso do utilizador abrir um ficheiro binário vazio, o programa pára
+//e o utilizador deve voltar a corrê-lo.
+//Por exemplo, se o utilizador correr o programa e quiser logo fazer print de uma lista de orçamentos, sem ter sequer
+//uma lista que contenha algum orçamento, o programa irá avisá-lo de que a lista que pretende ler encontra-se vazia.
+
+
 #include "Declaracoes.h"
 
 int main() {
