@@ -32,7 +32,7 @@ int main() {
                 }
             }
             if (validade == 1) break;
-            fprintf(stderr, "\nOpção inválida. Repita a escolha\n.");
+            fprintf(stderr, "\nOpção inválida. Repita a escolha.\n");
             printf("\nEscolha uma opção: \n");
             printf("1.\tAbrir ficheiro de orçamento\n");
             printf("2.\tAbrir ficheiro de despesas\n");
@@ -90,9 +90,8 @@ int main() {
                 limpar_despesas(1);
                 limpar_orcamentos(1);
                 return 0;
-
             default:
-                printf("Opção inválida. Repita a escolha. \n");
+                fprintf(stderr, "\nOpção inválida. Repita a escolha.\n");
         }
     }
 }

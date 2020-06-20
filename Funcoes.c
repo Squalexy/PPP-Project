@@ -109,11 +109,12 @@ void atualizar_lista_orcamento(char *tipo, int valor) {
     while (lista != NULL) {
         if (strcasecmp(lista->orc.tipo, tipo) == 0) {
             lista->orc.valor = valor;
-            break;
+            printf("O orçamento %s foi atualizado com sucesso!\n", lista->orc.tipo);
+            return;
         }
         lista = lista->next;
     }
-    printf("O orçamento %s foi atualizado com sucesso!\n", lista->orc.tipo);
+    fprintf(stderr, "\nO orçamento a atualizar não existe.\n");
 }
 
 //Faz print de todos os orçamentos da lista de orçamentos.
@@ -223,11 +224,12 @@ void atualizar_lista_despesas(char *descricao, int preco) {
     while (aux != NULL) {
         if (strcasecmp(aux->orc.descricao, descricao) == 0) {
             aux->orc.preco = preco;
-            break;
+            printf("\nA despesa %s foi atualizada com sucesso!\n", aux->orc.descricao);
+            return;
         }
         aux = aux->next;
     }
-    printf("\nA despesa %s foi atualizada com sucesso!\n", aux->orc.descricao);
+    fprintf(stderr, "\nA despesa a atualizar não existe.\n");
 }
 
 //Faz print de todas as despesas da lista de despesas.

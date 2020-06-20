@@ -76,7 +76,7 @@ int main() {
                 return 0;
 
             default:
-                printf("Opção inválida. Repita a escolha. \n");
+                fprintf(stderr, "\nOpção inválida. Repita a escolha.\n");
         }
     }
 }
