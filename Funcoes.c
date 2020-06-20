@@ -53,6 +53,7 @@ void inserir_orcamento(char *tipo, int valor) {
     aux->next = novo;
 }
 
+//Pede ao utilizador input de um orçamento, para depois removê-lo lista de orçamentos.
 void input_remover_orcamento() {
     char tipo[MAXTAMANHO] = "";
     printf("Orçamento que pretende remover: \n");
@@ -61,6 +62,8 @@ void input_remover_orcamento() {
     remover_orcamento(tipo);
 }
 
+//Remove o orçamento na lista de orçamentos, percorrendo a lista até encontrar o orçamento que se pretende remover.
+//É usado em conjunção com a função input_remover_orcamento.
 void remover_orcamento(char *tipo) {
     node_orcamento *atual = lista_orcamentos;
     node_orcamento *proximo = lista_orcamentos->next;
@@ -133,7 +136,7 @@ void print_orcamento() {
 
 
 //2. DESPESAS
-//Pede ao utilizador input de uma despesa, para depois inseri-lana lista de despesas.
+//Pede ao utilizador input de uma despesa, para depois inseri-la na lista de despesas.
 void input_despesas() {
     char descricao[MAXTAMANHO] = "";
     char tipo[MAXTAMANHO] = "";
@@ -168,6 +171,7 @@ void inserir_despesa(char *descricao, int preco, char *tipo) {
     aux->next = novo;
 }
 
+//Pede ao utilizador input de uma despesa, para depois removê-la lista de despesas.
 void input_remover_despesas() {
     char tipo[MAXTAMANHO] = "";
     printf("\nDespesa que pretende remover: \n");
@@ -176,6 +180,8 @@ void input_remover_despesas() {
     remover_despesas(tipo);
 }
 
+//Remove a despesa na lista de despesas, percorrendo a lista até encontrar a despesa que se pretende remover.
+//É usado em conjunção com a função input_remover_despesas.
 void remover_despesas(char *tipo) {
     node_despesa *atual = lista_despesas;
     node_despesa *proximo = lista_despesas->next;
