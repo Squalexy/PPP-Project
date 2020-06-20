@@ -576,6 +576,8 @@ void limpar_desvio_orcamento(char clear_header) {
 
 //8. FICHEIROS NO GERAL
 //Função para ler cada linha dos ficheiros até chegar ao fim.
+//A função foi criada pelo professor João Gabriel Silva para um exercício sobre árvore binária genérica com acesso
+//a ficheiros, a 2020-04-26.
 int get_one_line(FILE *fich, char *linha, int lim) {
     int c, i;
     i = 0;
