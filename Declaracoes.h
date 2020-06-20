@@ -22,6 +22,8 @@ void inserir_orcamento(char *tipo, int valor);
 void print_orcamento();
 void atualizar_lista_orcamento(char *tipo, int valor);
 void atualizar_orcamento();
+void input_remover_orcamento();
+void remover_orcamento(char *tipo);
 
 //2. DESPESAS
 void input_despesas();
@@ -29,6 +31,8 @@ void inserir_despesa(char *descricao, int preco, char *tipo);
 void print_despesa();
 void atualizar_lista_despesas(char *descricao, int preco);
 void atualizar_despesas();
+void input_remover_despesas();
+void remover_despesas(char *tipo);
 
 //3. FICHEIROS DE ENTRADA
 void ler_orcamento();

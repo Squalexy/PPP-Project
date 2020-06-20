@@ -20,13 +20,13 @@ int main() {
 
     while (1) {
         printf("Escolha uma opção: \n");
-        printf("1 - Calcular despesas totais\n");
-        printf("2 - Calcular desvio de orçamento\n");
-        printf("3 - Print despesas totais\n");
-        printf("4 - Print desvio de orçamento\n");
-        printf("5 - Guardar despesas totais num ficheiro\n");
-        printf("6 - Guardar desvio de orçamento num ficheiro\n");
-        printf("7 - Sair\n");
+        printf("1.\tCalcular despesas totais\n");
+        printf("2.\tCalcular desvio de orçamento\n");
+        printf("3.\tPrint despesas totais\n");
+        printf("4.\tPrint desvio de orçamento\n");
+        printf("5.\tGuardar despesas totais num ficheiro\n");
+        printf("6.\tGuardar desvio de orçamento num ficheiro\n");
+        printf("7.\tSair\n");
         while (fgets(introduzir, MAXTAMANHO, stdin)) {
             validade = 1;
             for (int i = 0; i < strlen(introduzir) - 1; i++) {
@@ -36,15 +36,15 @@ int main() {
                 }
             }
             if (validade == 1) break;
-            printf("Opção inválida. Repita a escolha. \n");
+            fprintf(stderr, "\nOpção inválida. Repita a escolha.\n");
             printf("Escolha uma opção: \n");
-            printf("1 - Calcular despesas totais\n");
-            printf("2 - Calcular desvio de orçamento\n");
-            printf("3 - Print despesas totais\n");
-            printf("4 - Print desvio de orçamento\n");
-            printf("5 - Guardar despesas totais num ficheiro\n");
-            printf("6 - Guardar desvio de orçamento num ficheiro\n");
-            printf("7 - Sair\n");
+            printf("1.\tCalcular despesas totais\n");
+            printf("2.\tCalcular desvio de orçamento\n");
+            printf("3.\tPrint despesas totais\n");
+            printf("4.\tPrint desvio de orçamento\n");
+            printf("5.\tGuardar despesas totais num ficheiro\n");
+            printf("6.\tGuardar desvio de orçamento num ficheiro\n");
+            printf("7.\tSair\n");
         }
         input = (int) strtol(introduzir, NULL, 10);
         switch (input) {
@@ -60,7 +60,6 @@ int main() {
                 print_despesas_totais();
                 break;
             case 4:
-                printf("Os seguintes orçamentos sofreram um l_desv_orc superior a 10%%:\n");
                 print_desvio_orcamento();
                 break;
             case 5:

@@ -26,8 +26,8 @@ void create_list_desvio_orcamento() {
 //1. ORÇAMENTO
 //Pede ao utilizador input de um orçamento, para depois inseri-lo na lista de orçamentos.
 void input_orcamento() {
-    char tipo[MAXTAMANHO];
-    char valor[MAXTAMANHO];
+    char tipo[MAXTAMANHO] = "";
+    char valor[MAXTAMANHO] = "";
     int preco;
     printf("Nome do tipo: \n");
     fgets(tipo, MAXTAMANHO, stdin);
@@ -53,21 +53,40 @@ void inserir_orcamento(char *tipo, int valor) {
     aux->next = novo;
 }
 
-//Faz print de todos os orçamentos da lista de orçamentos.
-void print_orcamento() {
-    node_orcamento *lista = lista_orcamentos;
-    if (lista->orc.valor == 0) lista = lista->next; //calloc cria um 0 na lista
-    while (lista != NULL) {
-        printf("TIPO: %s - ORÇAMENTO: %d \n", lista->orc.tipo, lista->orc.valor);
-        lista = lista->next;
+void input_remover_orcamento() {
+    char tipo[MAXTAMANHO] = "";
+    printf("Orçamento que pretende remover: \n");
+    fgets(tipo, MAXTAMANHO, stdin);
+    tipo[strlen(tipo) - 1] = '\0';
+    remover_orcamento(tipo);
+}
+
+void remover_orcamento(char *tipo) {
+    node_orcamento *atual = lista_orcamentos;
+    node_orcamento *proximo = lista_orcamentos->next;
+    if (atual->next == NULL){
+        fprintf(stderr, "\nA lista de orçamentos está vazia.\n");
+        return;
+    }
+    while (proximo != NULL && strcasecmp(proximo->orc.tipo, tipo) != 0){
+        atual = proximo;
+        proximo = proximo->next;
+    }
+    if (proximo == NULL){
+        fprintf(stderr, "\nO orçamento a remover não existe.\n");
+        return;
+    } else {
+        atual->next = proximo->next;
+        free(proximo);
+        printf("\nO orçamento %s foi removido com sucesso!\n", tipo);
     }
 }
 
 //Pede ao utilizador dois inputs: o orçamento a ser atualizado e o valor que irá substituir o atual.
 //De seguida, faz essa atualização.
 void atualizar_orcamento() {
-    char tipo[MAXTAMANHO];
-    char valor[MAXTAMANHO];
+    char tipo[MAXTAMANHO] = "";
+    char valor[MAXTAMANHO] = "";
     int preco;
     printf("Nome do tipo que quer atualizar: \n");
     fgets(tipo, MAXTAMANHO, stdin);
@@ -83,11 +102,30 @@ void atualizar_orcamento() {
 //É usado em conjunção com a função atualizar_orcamento.
 void atualizar_lista_orcamento(char *tipo, int valor) {
     node_orcamento *lista = lista_orcamentos;
+    if (lista->next == NULL){
+        fprintf(stderr, "\nA lista de orçamentos está vazia. Volte a inserir um elemento ou a abrir um ficheiro.\n");
+        return;
+    }
     while (lista != NULL) {
         if (strcasecmp(lista->orc.tipo, tipo) == 0) {
             lista->orc.valor = valor;
             break;
         }
+        lista = lista->next;
+    }
+    printf("O orçamento %s foi atualizado com sucesso!\n", lista->orc.tipo);
+}
+
+//Faz print de todos os orçamentos da lista de orçamentos.
+void print_orcamento() {
+    node_orcamento *lista = lista_orcamentos;
+    if (lista->next == NULL){
+        fprintf(stderr, "\nA lista de orçamentos está vazia. Volte a inserir um elemento ou a abrir um ficheiro.\n");
+        return;
+    }
+    if (lista->orc.valor == 0) lista = lista->next;
+    while (lista != NULL) {
+        printf("TIPO: %s - ORÇAMENTO: %d \n", lista->orc.tipo, lista->orc.valor);
         lista = lista->next;
     }
 }
@@ -96,9 +134,9 @@ void atualizar_lista_orcamento(char *tipo, int valor) {
 //2. DESPESAS
 //Pede ao utilizador input de uma despesa, para depois inseri-lana lista de despesas.
 void input_despesas() {
-    char descricao[MAXTAMANHO];
-    char tipo[MAXTAMANHO];
-    char valor[MAXTAMANHO];
+    char descricao[MAXTAMANHO] = "";
+    char tipo[MAXTAMANHO] = "";
+    char valor[MAXTAMANHO] = "";
     int preco;
     printf("Descrição da despesa: \n");
     fgets(descricao, MAXTAMANHO, stdin);
@@ -129,22 +167,40 @@ void inserir_despesa(char *descricao, int preco, char *tipo) {
     aux->next = novo;
 }
 
-//Faz print de todas as despesas da lista de despesas.
-void print_despesa() {
-    node_despesa *despesa = lista_despesas;
-    if (despesa->orc.preco == 0) despesa = despesa->next;
-    while (despesa != NULL) {
-        printf("DESCRIÇÃO: %s - ORÇAMENTO: %d  - TIPO: %s\n", despesa->orc.descricao, despesa->orc.preco,
-               despesa->orc.tipo);
-        despesa = despesa->next;
+void input_remover_despesas() {
+    char tipo[MAXTAMANHO] = "";
+    printf("\nDespesa que pretende remover: \n");
+    fgets(tipo, MAXTAMANHO, stdin);
+    tipo[strlen(tipo) - 1] = '\0';
+    remover_despesas(tipo);
+}
+
+void remover_despesas(char *tipo) {
+    node_despesa *atual = lista_despesas;
+    node_despesa *proximo = lista_despesas->next;
+    if (atual->next == NULL) {
+        fprintf(stderr, "\nA lista de despesas está vazia. Volte a inserir um elemento ou a abrir o ficheiro.\n");
+        return;
+    }
+    while (proximo != NULL && strcasecmp(proximo->orc.descricao, tipo) != 0) {
+        atual = proximo;
+        proximo = proximo->next;
+    }
+    if (proximo == NULL) {
+        fprintf(stderr, "\nA despesa a remover não existe.\n");
+        return;
+    } else {
+        atual->next = proximo->next;
+        free(proximo);
+        printf("\nA despesa %s foi removida com sucesso!\n", tipo);
     }
 }
 
 //Pede ao utilizador dois inputs: a despesa a ser atualizada e o valor que irá substituir o atual.
 //De seguida, faz essa atualização.
 void atualizar_despesas() {
-    char descricao[MAXTAMANHO];
-    char valor[MAXTAMANHO];
+    char descricao[MAXTAMANHO] = "";
+    char valor[MAXTAMANHO] = "";
     int preco;
     printf("Nome da descrição que quer atualizar: \n");
     fgets(descricao, MAXTAMANHO, stdin);
@@ -160,12 +216,32 @@ void atualizar_despesas() {
 //É usado em conjunção com a função atualizar_despesas.
 void atualizar_lista_despesas(char *descricao, int preco) {
     node_despesa *aux = lista_despesas;
+    if (aux->next == NULL){
+        fprintf(stderr, "\nA lista de despesas está vazia. Volte a inserir um elemento ou a abrir um ficheiro.\n");
+        return;
+    }
     while (aux != NULL) {
         if (strcasecmp(aux->orc.descricao, descricao) == 0) {
             aux->orc.preco = preco;
             break;
         }
         aux = aux->next;
+    }
+    printf("\nA despesa %s foi atualizada com sucesso!\n", aux->orc.descricao);
+}
+
+//Faz print de todas as despesas da lista de despesas.
+void print_despesa() {
+    node_despesa *despesa = lista_despesas;
+    if (despesa->next == NULL){
+        fprintf(stderr,"\nA lista de despesas está vazia. Volte a inserir um elemento ou a abrir um ficheiro.\n");
+        return;
+    }
+    if (despesa->orc.preco == 0) despesa = despesa->next;
+    while (despesa != NULL) {
+        printf("DESCRIÇÃO: %s - ORÇAMENTO: %d  - TIPO: %s\n", despesa->orc.descricao, despesa->orc.preco,
+               despesa->orc.tipo);
+        despesa = despesa->next;
     }
 }
 
@@ -174,13 +250,16 @@ void atualizar_lista_despesas(char *descricao, int preco) {
 //Pede o nome de um ficheiro de orçamento existente.
 //Abre e lê o ficheiro, inserindo o seu conteúdo numa lista de orçamentos.
 void ler_orcamento() {
-    char nome_fich[MAXTAMANHO];
+    char nome_fich[MAXTAMANHO] = "";
     FILE *fptr = NULL;
     while (fptr == NULL) {
         printf("Insira o nome do FICHEIRO BINÁRIO de ORÇAMENTOS a ser ABERTO: ");
         if (get_one_line(stdin, nome_fich, MAXTAMANHO) == EOF) return;
         fptr = fopen(nome_fich, "rb");
-        if (fptr == NULL) fprintf(stderr, "Ficheiro não existe. \n");
+        if (fptr == NULL) {
+            fprintf(stderr, "\nO ficheiro binário não existe. Corra o programa de novo.\n");
+            exit(1);
+        }
     }
     node_orcamento *aux = calloc(sizeof(node_orcamento), 1);
     limpar_orcamentos(0);
@@ -196,12 +275,19 @@ void ler_orcamento() {
 void escrever_orcamento() {
     FILE *fptr = NULL;
     node_orcamento *aux = lista_orcamentos;
-    char nome_fich[MAXTAMANHO];
+    if (aux->next == NULL){
+        fprintf(stderr, "\nA lista está vazia, não existe nada para acrescentar ao ficheiro.\n");
+        return;
+    }
+    char nome_fich[MAXTAMANHO] = "";
     while (fptr == NULL) {
         printf("Insira o nome do FICHEIRO BINÁRIO de ORÇAMENTOS a ser ESCRITO: ");
         if (get_one_line(stdin, nome_fich, MAXTAMANHO) == EOF) return;
         fptr = fopen(nome_fich, "wb");
-        if (fptr == NULL) fprintf(stderr, "Erro no ficheiro. \n");
+        if (fptr == NULL) {
+            fprintf(stderr, "\nO ficheiro está vazio.\n");
+            return;
+        }
     }
     while (aux != NULL) {
         if (aux->orc.valor == 0) aux = aux->next;
@@ -214,13 +300,16 @@ void escrever_orcamento() {
 //Pede o nome de um ficheiro de despesas existente.
 //Abre e lê o ficheiro, inserindo o seu conteúdo numa lista de despesas.
 void ler_despesas() {
-    char nome_fich[MAXTAMANHO];
+    char nome_fich[MAXTAMANHO] = "";
     FILE *fptr = NULL;
     while (fptr == NULL) {
         printf("Insira o nome do FICHEIRO BINÁRIO de DESPESAS a ser ABERTO: \n");
         if (get_one_line(stdin, nome_fich, MAXTAMANHO) == EOF) return;
         fptr = fopen(nome_fich, "rb");
-        if (fptr == NULL) fprintf(stderr, "Ficheiro não existe. \n");
+        if (fptr == NULL) {
+            fprintf(stderr, "\nO ficheiro binário não existe. Corra o programa de novo.\n");
+            exit(1);
+        }
     }
     node_despesa *aux = calloc(sizeof(node_despesa), 1);
     limpar_despesas(0);
@@ -236,12 +325,19 @@ void ler_despesas() {
 void escrever_despesas() {
     FILE *fptr = NULL;
     node_despesa *aux = lista_despesas;
-    char nome_fich[MAXTAMANHO];
+    if (aux->next == NULL){
+        fprintf(stderr, "\nA lista está vazia, não existe nada para acrescentar ao ficheiro.\n");
+        return;
+    }
+    char nome_fich[MAXTAMANHO] = "";
     while (fptr == NULL) {
         printf("Insira o nome do FICHEIRO BINÁRIO de DESPESAS a ser ESCRITO: \n");
         if (get_one_line(stdin, nome_fich, MAXTAMANHO) == EOF) return;
         fptr = fopen(nome_fich, "wb");
-        if (fptr == NULL) fprintf(stderr, "Erro no ficheiro. \n");
+        if (fptr == NULL) {
+            fprintf(stderr, "\nO ficheiro está vazio.\n");
+            return;
+        }
         while (aux != NULL) {
             if (aux->orc.preco == 0) aux = aux->next;
             fwrite(aux, sizeof(node_despesa), 1, fptr);
@@ -258,6 +354,10 @@ void escrever_despesas() {
 //(ex: ... -> ALIMENTAÇÃO -> ALIMENTAÇÃO -> TRANSPORTES (reset valor a 0) -> ...).
 void despesas_totais() {
     node_despesa *despesa = lista_despesas;
+    if (despesa->next == NULL){
+        fprintf(stderr, "\nA lista de despesas está vazia.\n");
+        return;
+    }
     int contagem = 0;
     if (despesa->orc.preco == 0) despesa = despesa->next;
     while (despesa != NULL) {
@@ -274,6 +374,7 @@ void despesas_totais() {
         }
         despesa = despesa->next;
     }
+    printf("\nAs despesas totais de cada orçamento foram calculadas com sucesso!\n");
 }
 
 //Insere o nome de um orçamento e as suas despesas totais numa lista.
@@ -290,6 +391,10 @@ void inserir_despesas_totais(node_despesa *despesa, int contagem) {
 //Faz print de todas as despesas totais da lista de despesas totais.
 void print_despesas_totais() {
     node_despesa_total *despesa_total = lista_despesas_totais;
+    if (despesa_total->next == NULL){
+        fprintf(stderr, "\nA lista de despesas totais está vazia.\n");
+        return;
+    }
     if (despesa_total->despesa.total == 0) despesa_total = despesa_total->next;
     while (despesa_total != NULL) {
         printf("Despesas totais do tipo %s : %d\n", despesa_total->despesa.despesa,
@@ -303,7 +408,14 @@ void print_despesas_totais() {
 void desvio_despesas() {
     node_orcamento *l_orc = lista_orcamentos;
     node_despesa_total *l_desp_tot = lista_despesas_totais;
-    node_desvio_orcamento *l_desv_orc = lista_desvio_orcamento;
+    if (l_orc->next == NULL){
+        fprintf(stderr, "\nA lista de orçamentos está vazia.\n");
+        return;
+    }
+    if (l_desp_tot->next == NULL){
+        fprintf(stderr, "\nA lista de despesas totais está vazia.\n");
+        return;
+    }
     if (l_orc->orc.valor == 0) l_orc = l_orc->next;
     if (l_desp_tot->despesa.total == 0) l_desp_tot = l_desp_tot->next;
     while (l_desp_tot != NULL && l_orc != NULL) {
@@ -315,6 +427,7 @@ void desvio_despesas() {
         l_orc = l_orc->next;
         l_desp_tot = l_desp_tot->next;
     }
+    printf("\nOs desvios de despesa superiores a 10%% para cada orçamento foram calculados com sucesso!\n");
 }
 
 //Insere numa lista as despesas que sofreram um desvio superior a 10% do orçamentado inicialmente.
@@ -327,11 +440,17 @@ void inserir_desvio_orcamento(int desvio_despesa, orcamentado o) {
     while (aux->next != NULL) aux = aux->next;
     novo->next = aux->next;
     aux->next = novo;
+
 }
 
 //Faz print de todos os desvios de orçamento da lista de desvio orcamento.
 void print_desvio_orcamento() {
     node_desvio_orcamento *desvio = lista_desvio_orcamento;
+    if (desvio->next == NULL){
+        fprintf(stderr, "\nA lista dos desvios de orçamentos está vazia.\n");
+        return;
+    }
+    printf("Os seguintes orçamentos sofreram um desvio superior a 10%%:\n");
     if (desvio->desvioOrc.desvio == 0) desvio = desvio->next;
     while (desvio != NULL) {
         int percentagem = ((desvio->desvioOrc.desvio) * 100) / desvio->desvioOrc.original;
@@ -346,11 +465,15 @@ void print_desvio_orcamento() {
 //Pega no conteúdo da lista com as despesas totais de cada orçamento e escreve-o num ficheiro.
 void escrever_despesas_totais(char *nome) {
     node_despesa_total *lista = lista_despesas_totais;
-    FILE *fptr;
+    if (lista->next == NULL){
+        fprintf(stderr, "\nO ficheiro de despesas totais está vazio.\n");
+        return;
+    }
+    FILE *fptr = NULL;
     fptr = fopen(nome, "w");
     if (fptr == NULL) {
-        fprintf(stderr, "Erro a abrir ficheiro\n");
-        exit(1);
+        fprintf(stderr, "\nO ficheiro está vazio.\n");
+        return;
     } else {
         while (lista != NULL) {
             if (lista->despesa.total == 0) lista = lista->next;
@@ -364,12 +487,16 @@ void escrever_despesas_totais(char *nome) {
 //Pega no conteúdo da lista com as despesas cujo desvio é superior a 10% e escreve-o num ficheiro.
 void escrever_desvio_orcamento(char *nome2) {
     node_desvio_orcamento *lista = lista_desvio_orcamento;
+    if (lista->next == NULL){
+        fprintf(stderr, "\nA lista de desvio de orçamentos está vazia.\n");
+        return;
+    }
     int desvio_global = 0;
-    FILE *fptr;
+    FILE *fptr = NULL;
     fptr = fopen(nome2, "w");
     if (fptr == NULL) {
-        fprintf(stderr, "Erro a abrir ficheiro\n");
-        exit(1);
+        fprintf(stderr, "\nO ficheiro está vazio.\n");
+        return;
     } else {
         while (lista != NULL) {
             if (lista->desvioOrc.original == 0) lista = lista->next;
@@ -400,7 +527,6 @@ void limpar_orcamentos(char clear_header) {
         lista = next;
     }
     if (clear_header) free(lista_orcamentos);
-
 }
 
 //Limpa a lista de despesas (liberta a memória alocada).
@@ -445,7 +571,7 @@ void limpar_desvio_orcamento(char clear_header) {
 
 
 //7. FICHEIROS NO GERAL
-//Função para obter a próxima linha do input.
+//Função para ler cada linha dos ficheiros até chegar ao fim.
 int get_one_line(FILE *fich, char *linha, int lim) {
     int c, i;
     i = 0;

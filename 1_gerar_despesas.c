@@ -10,17 +10,19 @@ int main() {
 
     while (1) {
         printf("\nEscolha uma opção: \n");
-        printf("1 - Abrir um ficheiro de orçamento\n");
-        printf("2 - Abrir um ficheiro de despesas\n");
-        printf("3 - Introduzir orçamento\n");
-        printf("4 - Introduzir despesas\n");
-        printf("5 - Atualizar orçamento\n");
-        printf("6 - Atualizar despesas\n");
-        printf("7 - Print orçamento\n");
-        printf("8 - Print despesas\n");
-        printf("9 - Guardar orçamento\n");
-        printf("10 - Guardar despesas\n");
-        printf("11 - Sair\n");
+        printf("1.\tAbrir ficheiro de orçamento\n");
+        printf("2.\tAbrir ficheiro de despesas\n");
+        printf("3.\tIntroduzir orçamento\n");
+        printf("4.\tIntroduzir despesa\n");
+        printf("5.\tRemover orçamento\n");
+        printf("6.\tRemover despesa\n");
+        printf("7.\tAtualizar orçamento\n");
+        printf("8.\tAtualizar despesa\n");
+        printf("9.\tPrint orçamentos\n");
+        printf("10.\tPrint despesas\n");
+        printf("11.\tGuardar orçamentos num ficheiro\n");
+        printf("12.\tGuardar despesas num ficheiro\n");
+        printf("13.\tSair\n");
         while (fgets(introduzir, MAXTAMANHO, stdin)) {
             validade = 1;
             for (int i = 0; i < strlen(introduzir) - 1; i++) {
@@ -30,19 +32,21 @@ int main() {
                 }
             }
             if (validade == 1) break;
-            printf("\nOpção inválida. Repita a escolha.");
+            fprintf(stderr, "\nOpção inválida. Repita a escolha\n.");
             printf("\nEscolha uma opção: \n");
-            printf("1 - Ler ficheiro de orçamento\n");
-            printf("2 - Ler ficheiro de despesas\n");
-            printf("3 - Introduzir orçamento\n");
-            printf("4 - Introduzir despesas\n");
-            printf("5 - Atualizar orçamento\n");
-            printf("6 - Atualizar despesas\n");
-            printf("7 - Print orçamento\n");
-            printf("8 - Print despesas\n");
-            printf("9 - Guardar orçamento\n");
-            printf("10 - Guardar despesas\n");
-            printf("11 - Sair\n");
+            printf("1.\tAbrir ficheiro de orçamento\n");
+            printf("2.\tAbrir ficheiro de despesas\n");
+            printf("3.\tIntroduzir orçamento\n");
+            printf("4.\tIntroduzir despesa\n");
+            printf("5.\tRemover orçamento\n");
+            printf("6.\tRemover despesa\n");
+            printf("7.\tAtualizar orçamento\n");
+            printf("8.\tAtualizar despesa\n");
+            printf("9.\tPrint orçamentos\n");
+            printf("10.\tPrint despesas\n");
+            printf("11.\tGuardar orçamentos num ficheiro\n");
+            printf("12.\tGuardar despesas num ficheiro\n");
+            printf("13.\tSair\n");
         }
         input = (int) strtol(introduzir, NULL, 10);
         switch (input) {
@@ -59,27 +63,34 @@ int main() {
                 input_despesas();
                 break;
             case 5:
-                atualizar_orcamento();
+                input_remover_orcamento();
                 break;
             case 6:
-                atualizar_despesas();
+                input_remover_despesas();
                 break;
             case 7:
-                print_orcamento();
+                atualizar_orcamento();
                 break;
             case 8:
-                print_despesa();
+                atualizar_despesas();
                 break;
             case 9:
-                escrever_orcamento();
+                print_orcamento();
                 break;
             case 10:
-                escrever_despesas();
+                print_despesa();
                 break;
             case 11:
+                escrever_orcamento();
+                break;
+            case 12:
+                escrever_despesas();
+                break;
+            case 13:
                 limpar_despesas(1);
                 limpar_orcamentos(1);
                 return 0;
+
             default:
                 printf("Opção inválida. Repita a escolha. \n");
         }
